@@ -1,34 +1,45 @@
-import { Field } from '../schema';
+import React from 'react';
+import { Plus } from 'lucide-react';
+import type { Field } from '../schema';
 
-export function EntryForm({ fields, onSubmit }: { fields: Field[], onSubmit: (d: any) => void }) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    onSubmit(Object.fromEntries(formData.entries()));
-    e.currentTarget.reset();
-  };
+interface EntryFormProps {
+  fields: Field[];
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+export function EntryForm({ fields, onSubmit }: EntryFormProps) {
+  if (fields.length === 0) {
+    return (
+      <div className="p-20 text-center text-slate-300 font-bold uppercase tracking-widest border-2 border-dashed border-slate-100 rounded-3xl">
+        Select a section from the sidebar to begin
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white border border-mint-100 rounded-xl p-8 shadow-sm">
-      <div className="grid grid-cols-2 gap-x-8 gap-y-5">
-        {fields.map(field => (
-          <div key={field.name} className={field.name.includes('Title') ? "col-span-2" : "col-span-1"}>
-            <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+    <form onSubmit={onSubmit} className="bg-white border border-mint-100 rounded-[2.5rem] p-12 shadow-xl shadow-mint-100/10">
+      <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-10 flex items-center gap-2">
+        <Plus size={16} /> Add Entry to Local Batch
+      </h3>
+      <div className="grid grid-cols-2 gap-x-12 gap-y-10">
+        {fields.map((field: Field) => (
+          <div key={field.name} className={field.label.toLowerCase().includes('title') || field.label.toLowerCase().includes('link') ? "col-span-2" : "col-span-1"}>
+            <label className="block text-[11px] font-black text-slate-800 uppercase tracking-widest mb-4 ml-1">
               {field.label}
             </label>
             <input
               name={field.name}
               type={field.type}
               required
-              className="w-full bg-white border border-slate-200 rounded-md px-4 py-2 text-sm focus:border-mint-500 focus:ring-1 focus:ring-mint-500 outline-none transition-all"
-              placeholder={`Enter value...`}
+              placeholder={`Enter ${field.label.toLowerCase()}...`}
+              className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4.5 text-sm focus:bg-white focus:border-mint-500 focus:ring-8 focus:ring-mint-500/5 outline-none transition-all text-slate-900 font-bold placeholder:text-slate-300 shadow-inner"
             />
           </div>
         ))}
       </div>
-      <div className="mt-8 flex justify-end">
-        <button type="submit" className="bg-slate-900 text-white px-10 py-2.5 rounded-md text-sm font-bold hover:bg-slate-800 transition-all shadow-lg">
-          Add Entry
+      <div className="mt-12 flex justify-end">
+        <button type="submit" className="group flex items-center gap-3 bg-mint-600 text-white px-12 py-4.5 rounded-2xl text-sm font-black hover:bg-mint-700 shadow-2xl shadow-mint-200 transition-all active:scale-95">
+          Commit to Queue
         </button>
       </div>
     </form>
