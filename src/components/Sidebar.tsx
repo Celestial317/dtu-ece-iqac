@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Search, LayoutDashboard, ChevronRight } from 'lucide-react';
 import { ALL_SHEETS } from '../schema';
 
