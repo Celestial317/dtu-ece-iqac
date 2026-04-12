@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mint-50: #f0f9f7;
+  --color-mint-100: #d9f1eb;
+  --color-mint-200: #b5e3d8;
+  --color-mint-300: #8fdcc9;
+  --color-mint-500: #2d9a85;
+  --color-mint-600: #268170;
+  --color-mint-700: #1f695c;
+  --color-mint-800: #1a574d;
+  
+  --color-slate-900: #0f172a;
+  --color-slate-700: #334155;
+  --color-slate-500: #64748b;
+}
+
+/* Force light mode behavior to prevent Vite's dark mode from washing out text */
+:root {
+  color-scheme: light;
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 240, 249, 247;
+}
+
+body {
+  background-color: var(--color-mint-50);
+  color: var(--color-slate-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9f1eb;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b5e3d8;
+}
