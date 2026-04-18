@@ -5,237 +5,328 @@ export interface Field {
 }
 
 export const SHEET_CONFIGS: Record<string, Field[]> = {
-  "Detail of Patents filed,publish": [
-    { name: "name", label: "Faculty/Student Name", type: "text" },
-    { name: "patentNo", label: "Patent Number", type: "text" },
-    { name: "awardDate", label: "Date of Award", type: "date" },
-    { name: "agency", label: "Patent Awarding Agency", type: "text" },
-    { name: "link", label: "Document Link", type: "url" }
-  ],
   "Basic Information": [
     { name: "year", label: "Year", type: "number" },
     { name: "prog", label: "Program Name", type: "text" },
     { name: "benefited", label: "Students Benefited", type: "number" }
   ],
   "Achievements of the department": [
-    { name: "progName", label: "Programme Name", type: "text" },
-    { name: "progCode", label: "Programme Code", type: "text" },
-    { name: "hasFieldProject", label: "Field Project (Yes/No)", type: "text" },
-    { name: "studentCount", label: "Students Undertaking", type: "number" },
-    { name: "link", label: "Document Link", type: "url" }
-  ],
+  { name: "progName", label: "Name of the Programme", type: "text" },
+  { name: "progCode", label: "Programme Code", type: "text" },
+  { name: "hasComponent", label: "Component of Field project / research project / internship (Yes/No)", type: "text" },
+  { name: "componentName", label: "If yes, Name of the component", type: "text" },
+  { name: "courseCode", label: "Course code of the component", type: "text" },
+  { name: "studentCount", label: "Number of students undertaking", type: "number" },
+  { name: "link", label: "Link to the relevant document", type: "url" }
+],
+"Detail of Patents filed,publish": [
+  { name: "name", label: "Name of the Faculty/student author of the patent", type: "text" },
+  { name: "patentNo", label: "Patent Number", type: "text" },
+  { name: "awardDate", label: "Date of Award", type: "date" },
+  { name: "agency", label: "Patent Awarding Agency", type: "text" },
+  { name: "link", label: "Link of Document", type: "url" }
+],
   "Journal Publications": [
-    { name: "title", label: "Paper Title", type: "text" },
-    { name: "authors", label: "Authors", type: "text" },
-    { name: "dept", label: "Department", type: "text" },
-    { name: "journal", label: "Journal Name", type: "text" },
-    { name: "year", label: "Year", type: "number" },
-    { name: "issn", label: "ISSN", type: "text" },
-    { name: "link", label: "Article Link", type: "url" }
-  ],
+  { name: "title", label: "Title of paper", type: "text" },
+  { name: "authors", label: "Name of the author/s", type: "text" },
+  { name: "dept", label: "Department of the teacher", type: "text" },
+  { name: "journal", label: "Name of journal", type: "text" },
+  { name: "year", label: "Year of publication", type: "number" },
+  { name: "issn", label: "ISSN number", type: "text" },
+  { name: "journalLink", label: "Link to website of the Journal", type: "url" },
+  { name: "articleLink", label: "Link to article/paper/abstract of the article", type: "url" },
+  { name: "ugcStatus", label: "Is it listed in UGC Care list", type: "text" }
+],
   "Conference Publications": [
-    { name: "title", label: "Paper Title", type: "text" },
-    { name: "authors", label: "Authors", type: "text" },
-    { name: "dept", label: "Department", type: "text" },
-    { name: "conf", label: "Conference Name", type: "text" },
-    { name: "year", label: "Year", type: "number" },
-    { name: "issn", label: "ISSN", type: "text" },
-    { name: "link", label: "DOI/Link", type: "url" }
-  ],
+  { name: "title", label: "Title of paper", type: "text" },
+  { name: "authors", label: "Name of the Author/s", type: "text" },
+  { name: "dept", label: "Department of teacher", type: "text" },
+  { name: "confName", label: "Name of Conference", type: "text" },
+  { name: "year", label: "Year of publication", type: "number" },
+  { name: "issn", label: "ISSN Number", type: "text" },
+  { name: "link", label: "Link to article/paper/abstract/DOI", type: "url" }
+],
   "Books and chapters": [
-    { name: "teacher", label: "Teacher Name", type: "text" },
-    { name: "bookTitle", label: "Book Title", type: "text" },
-    { name: "chapterTitle", label: "Chapter Title", type: "text" },
-    { name: "year", label: "Year", type: "number" },
-    { name: "isbn", label: "ISBN Number", type: "text" },
-    { name: "publisher", label: "Publisher", type: "text" },
-    { name: "link", label: "Link/DOI", type: "url" }
-  ],
+  { name: "teacherName", label: "Name of the teacher", type: "text" },
+  { name: "bookTitle", label: "Title of the book published", type: "text" },
+  { name: "chapterTitle", label: "Title of the chapters published", type: "text" },
+  { name: "year", label: "Year of publication", type: "number" },
+  { name: "isbn", label: "ISBN number", type: "text" },
+  { name: "affiliationMatch", label: "Affiliating Institution was same at time of publication (Yes/No)", type: "text" },
+  { name: "publisher", label: "Name of the publisher", type: "text" },
+  { name: "linkDoi", label: "Link/DOI", type: "url" }
+],
   "Fin. support to attend Conf etc": [
-    { name: "dates", label: "Dates (From-To)", type: "text" },
-    { name: "title", label: "Conference/Body Title", type: "text" },
-    { name: "teacher", label: "Teacher Name", type: "text" },
-    { name: "amount", label: "Amount Provided", type: "number" },
-    { name: "purpose", label: "Purpose", type: "text" }
+    { name: "dates", label: "Dates (from-to) (DD-MM-YYYY)", type: "text" },
+    { name: "bodyTitle", label: "Title of the conference/ workshops/ name of the professional body", type: "text" },
+    { name: "teacherName", label: "Name of the teacher", type: "text" },
+    { name: "amount", label: "Amount provided by the University", type: "number" },
+    { name: "purpose", label: "Purpose (Membership fee/travel/Registration fee)", type: "text" }
   ],
+
   "Current stock of Desktop,HPC et": [
-    { name: "lab", label: "Faculty/Lab Name", type: "text" },
-    { name: "desktop", label: "No. of Desktops", type: "number" },
-    { name: "server", label: "No. of Servers", type: "number" },
-    { name: "workstation", label: "No. of Workstations", type: "number" },
+    { name: "labName", label: "Name of Faculty/Lab", type: "text" },
+    { name: "desktops", label: "No. of Desktop", type: "number" },
+    { name: "servers", label: "No. of Server", type: "number" },
+    { name: "workstations", label: "No. of Workstation", type: "number" },
     { name: "hpc", label: "No. of HPC", type: "number" },
-    { name: "year", label: "Purchase Year", type: "number" }
+    { name: "purchaseYear", label: "Year of Purchase", type: "number" },
+    { name: "remark", label: "Remark", type: "text" }
   ],
+
   "Teachers using ICT": [
-    { name: "teacher", label: "Teacher Name", type: "text" },
-    { name: "ictTools", label: "ICT Tools Used", type: "text" },
-    { name: "classrooms", label: "No. of ICT Classrooms", type: "text" },
-    { name: "smartRooms", label: "No. of Smart Classrooms", type: "text" },
-    { name: "eResources", label: "E-Resources Used", type: "text" }
+    { name: "teacherName", label: "Name of teachers using ICT (LMS, e-Resources)", type: "text" },
+    { name: "ictTools", label: "ICT tools and resources used", type: "text" },
+    { name: "ictClassrooms", label: "Number of ICT enabled classrooms", type: "text" },
+    { name: "smartClassrooms", label: "Number of smart classrooms with class room number", type: "text" },
+    { name: "techniques", label: "E-resources and techniques", type: "text" },
+    { name: "docLink", label: "Relevant documents/ link", type: "url" }
   ],
   "Teachers attending PDP etc": [
-    { name: "faculty", label: "Faculty Name", type: "text" },
-    { name: "type", label: "Program Type", type: "text" },
-    { name: "duration", label: "Duration (Days)", type: "number" },
-    { name: "dates", label: "Start-End Dates", type: "text" },
-    { name: "inst", label: "Organizing Institution", type: "text" }
+    { name: "facultyName", label: "Name of the Faculty", type: "text" },
+    { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text" },
+    { name: "duration", label: "Duration (in No. of days)", type: "number" },
+    { name: "dates", label: "Start Date and End Date", type: "text" },
+    { name: "organizer", label: "Name of the Organising Institution", type: "text" },
+    { name: "proofLink", label: "Attach Proof (Document Link)", type: "url" }
   ],
+
   "Visit of faculty to other inst": [
     { name: "name", label: "Name", type: "text" },
-    { name: "designation", label: "Designation/Org", type: "text" },
-    { name: "topic", label: "Lecture Topic", type: "text" },
-    { name: "date", label: "Date", type: "date" }
+    { name: "designationOrg", label: "Designation & Organization", type: "text" },
+    { name: "topic", label: "Topic", type: "text" },
+    { name: "date", label: "Date", type: "date" },
+    { name: "proofLink", label: "Attach Proof (Document Link)", type: "url" }
   ],
+
   "Professional Affiliations": [
-    { name: "name", label: "Faculty Name", type: "text" },
-    { name: "body", label: "Professional Body", type: "text" },
-    { name: "type", label: "Membership Type", type: "text" },
-    { name: "area", label: "Area of Support", type: "text" }
+    { name: "facultyName", label: "Name of Faculty", type: "text" },
+    { name: "bodyName", label: "Name of Professional Body", type: "text" },
+    { name: "membershipType", label: "Type of Membership", type: "text" },
+    { name: "supportArea", label: "Area of support", type: "text" }
   ],
+
   "Prog. where syllabus revision": [
-    { name: "prog", label: "Programme Name", type: "text" },
-    { name: "course", label: "Course Name", type: "text" },
-    { name: "code", label: "Course Code", type: "text" },
-    { name: "year", label: "Revision Year", type: "number" }
+    { name: "progName", label: "Name of the programme", type: "text" },
+    { name: "courseName", label: "Name of the Course", type: "text" },
+    { name: "courseCode", label: "Course Code", type: "text" },
+    { name: "introYear", label: "Year of introduction", type: "number" },
+    { name: "docLink", label: "Link to the relevant document", type: "url" }
   ],
   "Student centric methods": [
-    { name: "course", label: "Course Name", type: "text" },
-    { name: "code", label: "Course Code", type: "text" },
-    { name: "prog", label: "Programme Name", type: "text" },
-    { name: "level", label: "UG/PG", type: "text" },
-    { name: "method", label: "Method Introduced", type: "text" }
+    { name: "courseName", label: "Course Name", type: "text" },
+    { name: "courseCode", label: "Course Code", type: "text" },
+    { name: "progName", label: "Name of the Programme", type: "text" },
+    { name: "level", label: "UG/ PG", type: "text" },
+    { name: "methodDetails", label: "Details of method introduced", type: "text" },
+    { name: "docLink", label: "Relevant document/ link", type: "url" }
   ],
+
   "academic and stress related iss": [
-    { name: "mentor", label: "Mentor Name", type: "text" },
-    { name: "students", label: "Details of Students", type: "text" },
-    { name: "ratio", label: "Mentor/Mentee Ratio", type: "text" }
+    { name: "mentorName", label: "Name of Mentor", type: "text" },
+    { name: "studentDetails", label: "Details of students", type: "text" },
+    { name: "ratio", label: "Mentor/ mentee ratio", type: "text" },
+    { name: "docLink", label: "Relevant documents/ link", type: "url" }
   ],
+
   "Awards, recognition, fellowship": [
-    { name: "awardee", label: "Awardee Name", type: "text" },
-    { name: "award", label: "Award Name", type: "text" },
-    { name: "body", label: "Awarding Body", type: "text" },
-    { name: "category", label: "Category", type: "text" },
-    { name: "year", label: "Award Year", type: "number" }
+    { name: "awardeeName", label: "Name of the awardee", type: "text" },
+    { name: "awardName", label: "Name of the award", type: "text" },
+    { name: "awardingBody", label: "Name of the awarding body", type: "text" },
+    { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text" },
+    { name: "year", label: "Year of award", type: "number" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
+
   "Recognition by govt agency": [
-    { name: "dept", label: "Department Name", type: "text" },
-    { name: "scheme", label: "Scheme Name", type: "text" },
-    { name: "agency", label: "Funding Agency", type: "text" },
-    { name: "year", label: "Award Year", type: "number" },
-    { name: "funds", label: "Funds Provided", type: "number" }
+    { name: "deptName", label: "Name of the Department", type: "text" },
+    { name: "schemeName", label: "Name of the Scheme", type: "text" },
+    { name: "fundingAgency", label: "Name of the funding agency", type: "text" },
+    { name: "awardYear", label: "Year of Award", type: "number" },
+    { name: "funds", label: "Funds provided", type: "number" },
+    { name: "duration", label: "Duration of award", type: "text" },
+    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
   "Grants for research projects": [
-    { name: "pi", label: "PI/Co-PI Name", type: "text" },
-    { name: "title", label: "Project Title", type: "text" },
-    { name: "agency", label: "Funding Agency", type: "text" },
+    { name: "piName", label: "Name of PI/ Co-PI/ Chair Holder", type: "text" },
+    { name: "projectTitle", label: "Title of project/ endowment/ Chair", type: "text" },
+    { name: "fundingAgency", label: "Name of the funding agency", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
-    { name: "year", label: "Award Year", type: "number" },
-    { name: "amount", label: "Amount (INR)", type: "number" }
+    { name: "awardYear", label: "Year of award or sanction", type: "number" },
+    { name: "amountInr", label: "Amount in INR", type: "number" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
-  "Revenue generated": [
-    { name: "consultant", label: "Consultant Name", type: "text" },
-    { name: "project", label: "Project Title", type: "text" },
-    { name: "agency", label: "Sponsoring Agency", type: "text" },
+
+  "Revenue generated (Consultancy)": [
+    { name: "consultantName", label: "Name of the consultant", type: "text" },
+    { name: "projectName", label: "Name of consultancy project", type: "text" },
+    { name: "totalGrant", label: "Total Grant (Rs.)", type: "number" },
+    { name: "sponsoringAgency", label: "Agency with contact details", type: "text" },
+    { name: "grantYear", label: "Year of grant", type: "number" },
+    { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
+    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
+  ],
+
+  "Revenue generated (Corporate Training)": [
+    { name: "teacherNames", label: "Names of the teacher-consultants", type: "text" },
+    { name: "trainingTitle", label: "Title of corporate training programme", type: "text" },
+    { name: "seekingAgency", label: "Agency seeking training with contact details", type: "text" },
     { name: "year", label: "Year", type: "number" },
-    { name: "revenue", label: "Revenue (Lakhs)", type: "number" }
+    { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
+    { name: "traineeCount", label: "Number of trainees", type: "number" }
+  ],
+
+  "Revenue generated (Collaborations)": [
+    { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
+    { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
+    { name: "participantName", label: "Name of the participant", type: "text" },
+    { name: "financialSource", label: "Source of financial support", type: "text" },
+    { name: "collabYear", label: "Year of collaboration", type: "number" },
+    { name: "duration", label: "Duration", type: "text" },
+    { name: "activityNature", label: "Nature of the activity", type: "text" },
+    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
   "Collaborative activities": [
-    { name: "type", label: "Activity Type", type: "text" },
-    { name: "org", label: "Organization", type: "text" },
+    { name: "activityType", label: "Type of Activity (Research, Faculty/Student Exchange)", type: "text" },
+    { name: "organization", label: "Name of Institution/Organization", type: "text" },
     { name: "year", label: "Year", type: "number" },
-    { name: "nature", label: "Nature of Collab", type: "text" },
-    { name: "participants", label: "No. of Participants", type: "number" }
+    { name: "nature", label: "Nature of Collaboration (Project, MoU, etc.)", type: "text" },
+    { name: "participants", label: "Number of Participants (Faculty/Students)", type: "text" },
+    { name: "duration", label: "Duration of Activity", type: "text" },
+    { name: "funding", label: "Funding Details", type: "text" },
+    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
+
   "Linkages with inst., industries": [
-    { name: "year", label: "MoU Year", type: "number" },
-    { name: "org", label: "Organization", type: "text" },
+    { name: "mouYear", label: "Year of signing MoU", type: "number" },
+    { name: "organization", label: "Name of the organization", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
-    { name: "purpose", label: "Purpose", type: "text" },
-    { name: "activities", label: "Activities List", type: "text" }
+    { name: "purpose", label: "Purpose of MOU/Collaboration", type: "text" },
+    { name: "activities", label: "Actual activities under MOU", type: "text" },
+    { name: "activityDate", label: "Date of the activity conducted", type: "text" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
+
   "E-content developed by teacher": [
-    { name: "teacher", label: "Teacher Name", type: "text" },
-    { name: "module", label: "Module Name", type: "text" },
-    { name: "platform", label: "Platform", type: "text" },
-    { name: "date", label: "Launch Date", type: "date" }
+    { name: "teacherName", label: "Name of the teacher", type: "text" },
+    { name: "moduleName", label: "Name of the module", type: "text" },
+    { name: "platform", label: "Platform (e.g., SWAYAM, NPTEL)", type: "text" },
+    { name: "launchDate", label: "Date of launching e-content", type: "text" },
+    { name: "docLink", label: "Link of the relevant document", type: "url" }
   ],
+
   "Capability development Schemes": [
-    { name: "scheme", label: "Scheme Name", type: "text" },
-    { name: "year", label: "Implementation Year", type: "number" },
-    { name: "enrolled", label: "No. of Students", type: "number" },
-    { name: "agency", label: "Agencies Involved", type: "text" }
+    { name: "schemeName", label: "Name of the capability enhancement scheme", type: "text" },
+    { name: "year", label: "Year of implementation", type: "number" },
+    { name: "enrolledCount", label: "Number of students enrolled", type: "number" },
+    { name: "agencies", label: "Agencies involved with contact details", type: "text" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
-  "Students-Comp Exam, Higher Edu.": [
-    { name: "student", label: "Student Name", type: "text" },
-    { name: "org", label: "Organization/University", type: "text" },
-    { name: "program", label: "Program Enrolled", type: "text" }
+  "Students-Comp Exam, Higher Edu. (Progressed)": [
+    { name: "studentName", label: "Name of the outgoing student", type: "text" },
+    { name: "organization", label: "Organization joined for Higher Education", type: "text" },
+    { name: "programDetails", label: "Details of the program enrolled", type: "text" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
+
+  "Students-Comp Exam, Higher Edu. (Qualified)": [
+    { name: "studentName", label: "Name of the qualifying student", type: "text" },
+    { name: "year", label: "Year of Qualifying", type: "number" },
+    { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
+    { name: "examName", label: "Name of competitive examination", type: "text" },
+    { name: "docLink", label: "Links to relevant document", type: "url" }
+  ],
+
   "Details of awards, medals etc": [
-    { name: "year", label: "Award Year", type: "number" },
-    { name: "award", label: "Award Name", type: "text" },
-    { name: "level", label: "National/Intl", type: "text" },
-    { name: "category", label: "Sports/Cultural", type: "text" },
-    { name: "student", label: "Student Name", type: "text" }
+    { name: "year", label: "Year", type: "number" },
+    { name: "awardName", label: "Name of the award/ medal", type: "text" },
+    { name: "level", label: "National/ International", type: "text" },
+    { name: "category", label: "Sports/ Cultural", type: "text" },
+    { name: "idNumber", label: "AADHAR / Student ID number", type: "text" },
+    { name: "studentName", label: "Name of the student", type: "text" },
+    { name: "docLink", label: "Relevant document (Link)", type: "url" }
   ],
+
   "Students provided fin. support": [
-    { name: "date", label: "Date", type: "date" },
-    { name: "student", label: "Student Name", type: "text" },
+    { name: "entryDate", label: "Date", type: "date" },
+    { name: "studentName", label: "Name of Student", type: "text" },
     { name: "pan", label: "PAN", type: "text" },
-    { name: "event", label: "Event Name", type: "text" },
-    { name: "inst", label: "Organizing Institution", type: "text" },
-    { name: "amount", label: "Amount", type: "number" }
+    { name: "eventName", label: "Conference/Workshop/Lecture Attended", type: "text" },
+    { name: "organizingInst", label: "Organizing Institution", type: "text" },
+    { name: "supportAmount", label: "Amount of support", type: "number" },
+    { name: "supportDate", label: "Date of Support", type: "date" }
   ],
   "Programmes organized by Dept.": [
     { name: "year", label: "Year", type: "number" },
-    { name: "titleTeaching", label: "Title (Teaching)", type: "text" },
-    { name: "titleNonTeaching", label: "Title (Non-Teaching)", type: "text" },
-    { name: "dates", label: "Dates", type: "text" },
-    { name: "participants", label: "No. of Participants", type: "number" }
+    { name: "teachingTitle", label: "Title of professional development (Teaching)", type: "text" },
+    { name: "adminTitle", label: "Title of administrative training", type: "text" },
+    { name: "dates", label: "Dates (from-to)", type: "text" },
+    { name: "participantCount", label: "No. of participants", type: "number" },
+    { name: "organizer", label: "Organizing Faculty/Staff and Department", type: "text" },
+    { name: "sponsor", label: "Sponsoring agency", type: "text" }
   ],
+
   "Staff Training": [
-    { name: "official", label: "Official Name", type: "text" },
+    { name: "officialName", label: "Name of Official", type: "text" },
     { name: "programme", label: "Programme", type: "text" },
     { name: "dates", label: "Dates", type: "text" },
-    { name: "inst", label: "Organizing Institution", type: "text" }
+    { name: "institution", label: "Organizing institution", type: "text" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
+
   "Functional MoUs with institutio": [
-    { name: "year", label: "MoU Year", type: "number" },
-    { name: "org", label: "Organization", type: "text" },
+    { name: "signingYear", label: "Year of signing MoU", type: "number" },
+    { name: "organization", label: "Name of the organization with whom MOU/Collaboration", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
-    { name: "purpose", label: "Purpose", type: "text" },
-    { name: "activities", label: "Conduct Activities", type: "text" }
+    { name: "purpose", label: "Purpose of MOU/Collaboration", type: "text" },
+    { name: "activities", label: "Actual activities under each MOU (year-wise)", type: "text" },
+    { name: "activityDate", label: "Date of the activity conducted", type: "text" },
+    { name: "proofLink", label: "Attach Relevant (Link)", type: "url" }
   ],
+
   "Extension & outreach activities": [
-    { name: "person", label: "Resource Person", type: "text" },
+    { name: "resourcePerson", label: "Resource person", type: "text" },
     { name: "date", label: "Date", type: "date" },
     { name: "location", label: "Location", type: "text" },
-    { name: "type", label: "Activity Type", type: "text" },
-    { name: "participants", label: "No. of Participants", type: "number" }
+    { name: "activityType", label: "Type of activity", type: "text" },
+    { name: "participantCount", label: "No. of Participants", type: "number" },
+    { name: "geoTagLink", label: "Report with Geo-Tag Photograph (Link)", type: "url" }
   ],
-  "Other Important information": [
-    { name: "course", label: "Course Name", type: "text" },
-    { name: "code", label: "Course Code", type: "text" },
-    { name: "prog", label: "Programme Name", type: "text" },
-    { name: "level", label: "UG/PG", type: "text" },
-    { name: "activities", label: "Activities Description", type: "text" },
-    { name: "year", label: "Intro Year", type: "number" }
+  "Other Info (Employability/Skill)": [
+    { name: "courseName", label: "Name of the Course", type: "text" },
+    { name: "courseCode", label: "Course Code", type: "text" },
+    { name: "progName", label: "Name of the Programme", type: "text" },
+    { name: "level", label: "UG/ PG", type: "text" },
+    { name: "activities", label: "Activities (Employability/Entrepreneurship/Skill)", type: "text" },
+    { name: "introYear", label: "Year of introduction", type: "number" }
   ],
+
+  "Other Info (New Courses)": [
+    { name: "courseName", label: "Name of the new course introduced", type: "text" },
+    { name: "progName", label: "Program name", type: "text" },
+    { name: "progCode", label: "Program code", type: "text" },
+    { name: "courseCode", label: "Course code", type: "text" },
+    { name: "introYear", label: "Year of introduction", type: "number" },
+    { name: "docLink", label: "Link of the relevant document", type: "url" }
+  ],
+
   "Departmental Library Informatio": [
-    { name: "title", label: "Book Title", type: "text" },
-    { name: "authors", label: "Authors", type: "text" },
-    { name: "pub", label: "Publisher", type: "text" },
+    { name: "bookTitle", label: "Title of The Book", type: "text" },
+    { name: "authors", label: "Authors of Book", type: "text" },
+    { name: "publisher", label: "Publisher", type: "text" },
     { name: "edition", label: "Edition", type: "text" },
-    { name: "year", label: "Year", type: "number" }
+    { name: "pubYear", label: "Year of Publication", type: "number" }
   ],
+
   "PhD Defense Details": [
-    { name: "student", label: "Student Name", type: "text" },
-    { name: "roll", label: "Roll No.", type: "text" },
-    { name: "thesis", label: "Thesis Title", type: "text" },
+    { name: "studentName", label: "Name of Student", type: "text" },
+    { name: "rollNo", label: "Enrollment Number/ Roll No.", type: "text" },
+    { name: "thesisTitle", label: "Thesis Title", type: "text" },
     { name: "supervisor", label: "Supervisor", type: "text" },
     { name: "coSupervisor", label: "Co-Supervisor", type: "text" },
-    { name: "defenseDate", label: "Defense Date", type: "date" },
-    { name: "resultDate", label: "Result Date", type: "date" }
-  ]
+    { name: "defenseDate", label: "Date of Defense", type: "date" },
+    { name: "resultDate", label: "Date of Result Notification", type: "date" }
+  ],
 };
 
 export const ALL_SHEETS = Object.keys(SHEET_CONFIGS);
