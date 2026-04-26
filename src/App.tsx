@@ -16,11 +16,17 @@ interface DataFrameRow {
   isSynced: boolean;
 }
 
+const normalizeSheetName = (name: string): string => name.trim().replace(/\s+/g, ' ').toLowerCase();
+
 const resolveGoogleSheetName = (uiSheetName: string): string => {
-  const mapped = GOOGLE_SHEET_NAME_MAP[uiSheetName];
-  if (mapped && mapped.trim().length > 0) {
-    return mapped.trim();
+  const normalizedInput = normalizeSheetName(uiSheetName);
+
+  for (const [key, value] of Object.entries(GOOGLE_SHEET_NAME_MAP)) {
+    if (normalizeSheetName(key) === normalizedInput || normalizeSheetName(value) === normalizedInput) {
+      return value.trim();
+    }
   }
+
   return uiSheetName.trim().replace(/\s+/g, ' ');
 };
 
