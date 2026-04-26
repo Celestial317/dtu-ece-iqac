@@ -2,14 +2,10 @@ export interface Field {
   name: string;
   label: string;
   type: 'text' | 'number' | 'url' | 'date';
+  autoGenerate?: boolean;
 }
 
 export const SHEET_CONFIGS: Record<string, Field[]> = {
-  "Basic Information": [
-    { name: "year", label: "Year", type: "number" },
-    { name: "prog", label: "Program Name", type: "text" },
-    { name: "benefited", label: "Students Benefited", type: "number" }
-  ],
   "Achievements of the department": [
   { name: "progName", label: "Name of the Programme", type: "text" },
   { name: "progCode", label: "Programme Code", type: "text" },
@@ -20,6 +16,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "link", label: "Link to the relevant document", type: "url" }
 ],
 "Detail of Patents filed,publish": [
+  { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
   { name: "name", label: "Name of the Faculty/student author of the patent", type: "text" },
   { name: "patentNo", label: "Patent Number", type: "text" },
   { name: "awardDate", label: "Date of Award", type: "date" },
@@ -327,6 +324,28 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "defenseDate", label: "Date of Defense", type: "date" },
     { name: "resultDate", label: "Date of Result Notification", type: "date" }
   ],
+
+  "Student Submission Logs": [
+    { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
+    { name: "timestamp", label: "Submission Date & Time", type: "text", autoGenerate: true },
+    { name: "studentName", label: "Student Name", type: "text", autoGenerate: true },
+    { name: "rollNumber", label: "Roll Number", type: "text", autoGenerate: true },
+    { name: "phoneNumber", label: "Phone Number", type: "text", autoGenerate: true },
+    { name: "sheetName", label: "Sheet Submitted To", type: "text", autoGenerate: true },
+    { name: "recordsAdded", label: "Records Added", type: "number", autoGenerate: true }
+  ]
 };
 
-export const ALL_SHEETS = Object.keys(SHEET_CONFIGS);
+// Role-based sheet access control
+export const STUDENT_SHEETS = [
+  "Detail of Patents filed,publish",
+  "Students-Comp Exam, Higher Edu. (Progressed)",
+  "Students-Comp Exam, Higher Edu. (Qualified)",
+  "Details of awards, medals etc",
+  "Students provided fin. support",
+  "PhD Defense Details"
+];
+
+export const FACULTY_SHEETS = Object.keys(SHEET_CONFIGS).filter(sheet => sheet !== "Student Submission Logs");
+
+export const ALL_SHEETS = Object.keys(SHEET_CONFIGS).filter(sheet => sheet !== "Student Submission Logs");
