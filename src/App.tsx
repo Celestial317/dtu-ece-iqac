@@ -3,7 +3,7 @@ import {
   Database, Search, LayoutDashboard, Plus, Trash2, 
   Check, ChevronRight, Loader2, Layers, Menu, X, LogOut
 } from 'lucide-react';
-import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS } from './schema';
+import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP } from './schema';
 import { useAuth } from './contexts/AuthContext';
 import LoginPage from './components/LoginPage';
 
@@ -15,6 +15,14 @@ interface DataFrameRow {
   isSyncing: boolean;
   isSynced: boolean;
 }
+
+const resolveGoogleSheetName = (uiSheetName: string): string => {
+  const mapped = GOOGLE_SHEET_NAME_MAP[uiSheetName];
+  if (mapped && mapped.trim().length > 0) {
+    return mapped.trim();
+  }
+  return uiSheetName.trim().replace(/\s+/g, ' ');
+};
 
 export default function App() {
   const { user, role, logout, isAuthenticated } = useAuth();
@@ -126,12 +134,13 @@ export default function App() {
     try {
       // Pandas-like .values extraction based on schema order
       const values = SHEET_CONFIGS[activeSheet].map(f => row.data[f.name]);
+      const targetSheetName = resolveGoogleSheetName(activeSheet);
       
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ sheetName: activeSheet, data: [values] })
+        body: JSON.stringify({ sheetName: targetSheetName, data: [values] })
       });
 
       setTimeout(() => {

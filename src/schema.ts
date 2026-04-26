@@ -336,6 +336,16 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ]
 };
 
+// Map UI/config keys to exact Google Sheet tab names.
+// This avoids accidental creation of new tabs when labels differ by case or punctuation.
+export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
+  "Books and chapters": "Books and Chapters",
+  "Detail of Patents filed,publish": "Details of Patents",
+  "Students-Comp Exam, Higher Edu. (Progressed)": "Students-Comp Exam, Higher Edu.",
+  "Students-Comp Exam, Higher Edu. (Qualified)": "Students-Comp Exam, Higher Edu.",
+  "Student Submission Logs": "logs"
+};
+
 // Role-based sheet access control
 export const STUDENT_SHEETS = [
   "Detail of Patents filed,publish",
