@@ -247,9 +247,9 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Awards, recognition, fellowship": "Awards, recognition, fellowship",
   "Recognition by govt agency": "Recognition by govt agency",
   "Grants for research projects": "Grants for research projects",
-  "12A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
-  "12B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
-  "12C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
+  "16A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
+  "16B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
+  "16C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
   "Collaborative activities": "Collaborative activities",
   "E-content developed by teacher": "E-content developed by teacher",
   "Details of awards, medals etc": "Details of awards, medals etc",
@@ -290,13 +290,13 @@ export const FACULTY_SHEETS = [
   "Awards, recognition, fellowship",
   "Recognition by govt agency",
   "Grants for research projects",
-  "12A Revenue generated (Consultancy)",
-  "12B Revenue generated (Corporate Training)",
-  "12C Revenue generated (Collaborations)",
   "Collaborative activities",
   "E-content developed by teacher",
   "Extension & outreach activities",
-  "Departmental Library Information"
+  "Departmental Library Information",
+  "16A Revenue generated (Consultancy)",
+  "16B Revenue generated (Corporate Training)",
+  "16C Revenue generated (Collaborations)",
 ];
 
 export const ALL_SHEETS = Object.keys(SHEET_CONFIGS).filter(
