@@ -18,16 +18,26 @@ interface DataFrameRow {
 
 const normalizeSheetName = (name: string): string => name.trim().replace(/\s+/g, ' ').toLowerCase();
 
-const resolveGoogleSheetName = (uiSheetName: string): string => {
-  const normalizedInput = normalizeSheetName(uiSheetName);
+const resolveGoogleSheetName = (uiSheetName: string): string | null => {
+  // Prefer exact match first to preserve the real tab name as-is.
+  if (GOOGLE_SHEET_NAME_MAP[uiSheetName]) {
+    return GOOGLE_SHEET_NAME_MAP[uiSheetName];
+  }
 
-  for (const [key, value] of Object.entries(GOOGLE_SHEET_NAME_MAP)) {
-    if (normalizeSheetName(key) === normalizedInput || normalizeSheetName(value) === normalizedInput) {
-      return value.trim();
+  for (const value of Object.values(GOOGLE_SHEET_NAME_MAP)) {
+    if (value === uiSheetName) {
+      return value;
     }
   }
 
-  return uiSheetName.trim().replace(/\s+/g, ' ');
+  const normalizedInput = normalizeSheetName(uiSheetName);
+  for (const [key, value] of Object.entries(GOOGLE_SHEET_NAME_MAP)) {
+    if (normalizeSheetName(key) === normalizedInput || normalizeSheetName(value) === normalizedInput) {
+      return value;
+    }
+  }
+
+  return null;
 };
 
 export default function App() {
@@ -141,12 +151,19 @@ export default function App() {
       // Pandas-like .values extraction based on schema order
       const values = SHEET_CONFIGS[activeSheet].map(f => row.data[f.name]);
       const targetSheetName = resolveGoogleSheetName(activeSheet);
+      if (!targetSheetName) {
+        throw new Error(`Google sheet mapping missing for "${activeSheet}"`);
+      }
       
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ sheetName: targetSheetName, data: [values] })
+        body: JSON.stringify({
+          sheetName: targetSheetName,
+          uiSheetName: activeSheet,
+          data: [values]
+        })
       });
 
       setTimeout(() => {
@@ -158,7 +175,8 @@ export default function App() {
         });
       }, 1500);
     } catch (err) {
-      alert("Sync error");
+      const message = err instanceof Error ? err.message : "Sync error";
+      alert(message);
       setDf(prev => {
         const updated = [...prev[activeSheet]];
         const i = updated.findIndex(r => r.id === id);
