@@ -293,7 +293,6 @@ export const FACULTY_SHEETS = [
   "Collaborative activities",
   "E-content developed by teacher",
   "Extension & outreach activities",
-  "Departmental Library Information",
   "16A Revenue generated (Consultancy)",
   "16B Revenue generated (Corporate Training)",
   "16C Revenue generated (Collaborations)",
