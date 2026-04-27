@@ -13,8 +13,8 @@ const PERIOD_OPTIONS = ["Jan-Feb2026", "Mar-Apr2026", "May-Jun2026"] as const;
 type PeriodOption = (typeof PERIOD_OPTIONS)[number];
 
 const PERIOD_SHEET_LINKS: Record<PeriodOption, string> = {
-  "Jan-Feb2026": GOOGLE_SCRIPT_URL,
-  "Mar-Apr2026": "PASTE_MAR_APR_2026_SHEET_LINK_HERE",
+  "Jan-Feb2026": "PASTE_Jan_Feb_2026_SHEET_LINK_HERE",
+  "Mar-Apr2026": GOOGLE_SCRIPT_URL,
   "May-Jun2026": "PASTE_MAY_JUN_2026_SHEET_LINK_HERE"
 };
 
