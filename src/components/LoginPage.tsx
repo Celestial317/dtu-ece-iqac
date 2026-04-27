@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { LogIn, User, Lock } from 'lucide-react';
+import { LogIn, User, Lock, Calendar } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { PERIOD_OPTIONS, PeriodOption } from '../schema';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -13,6 +14,7 @@ const FACULTY_CREDENTIALS = {
 
 export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [userType, setUserType] = useState<'student' | 'faculty' | null>(null);
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodOption | ''>('');
   const [studentName, setStudentName] = useState('');
   const [studentRoll, setStudentRoll] = useState('');
   const [studentPhone, setStudentPhone] = useState('');
@@ -29,6 +31,10 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       setError('All fields are required');
       return;
     }
+    if (!selectedPeriod) {
+      setError('Please select a period');
+      return;
+    }
 
     login(
       {
@@ -37,7 +43,8 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
         rollNumber: studentRoll,
         phoneNumber: studentPhone
       },
-      'student'
+      'student',
+      selectedPeriod
     );
     onLoginSuccess();
   };
@@ -50,8 +57,12 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       setError('Invalid ID or password');
       return;
     }
+    if (!selectedPeriod) {
+      setError('Please select a period');
+      return;
+    }
 
-    login({ type: 'faculty' }, 'faculty');
+    login({ type: 'faculty' }, 'faculty', selectedPeriod);
     onLoginSuccess();
   };
 
@@ -92,6 +103,28 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
           </div>
         ) : (
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-mint-100">
+            <div className="relative mb-6">
+              <label className="block text-sm sm:text-base font-black text-slate-800 uppercase tracking-[0.08em] mb-2 ml-0.5">
+                Reporting Period
+              </label>
+              <div className="relative">
+                <Calendar className="absolute left-4 top-3.5 text-slate-400" size={16} />
+                <select
+                  value={selectedPeriod}
+                  onChange={(e) => setSelectedPeriod(e.target.value as PeriodOption)}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-12 pr-4 text-sm focus:ring-4 focus:ring-mint-500/10 focus:border-mint-500 outline-none text-slate-900 font-bold"
+                  aria-label="Select reporting period"
+                >
+                  <option value="" disabled>Select a period...</option>
+                  {PERIOD_OPTIONS.map((period) => (
+                    <option key={period} value={period}>
+                      {period}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <button
               onClick={() => {
                 setUserType(null);
@@ -101,8 +134,10 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                 setStudentPhone('');
                 setFacultyId('');
                 setFacultyPassword('');
+                setSelectedPeriod('');
               }}
-              className="text-sm text-slate-500 hover:text-slate-700 font-bold mb-6 flex items-center gap-2"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              aria-label="Go back to role selection"
             >
               ← Back to role selection
             </button>

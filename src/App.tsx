@@ -1,32 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, LayoutDashboard, Plus, Trash2, 
-  Check, ChevronRight, Loader2, Layers, Menu, X, LogOut
+  Check, ChevronRight, Loader2, Layers, Menu, X, LogOut, Calendar
 } from 'lucide-react';
-import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP } from './schema';
+import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP, type PeriodOption } from './schema';
 import { useAuth } from './contexts/AuthContext';
 import LoginPage from './components/LoginPage';
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4dBU1yCZgfBpya0wMaPNClTmws6R9xUiHYAmhJI_8686zTm5zCSVfUgImoUX0HQ-0TA/exec";
-
-const PERIOD_OPTIONS = [
-  "Jan-Feb2026",
-  "Mar-Apr2026",
-  "May-Jun2026",
-  "Jul-Aug2026",
-  "Sep-Oct2026",
-  "Nov-Dec2026"
-] as const;
-type PeriodOption = (typeof PERIOD_OPTIONS)[number];
-
-const PERIOD_SHEET_LINKS: Record<PeriodOption, string> = {
-  "Jan-Feb2026": GOOGLE_SCRIPT_URL,
-  "Mar-Apr2026": GOOGLE_SCRIPT_URL,
-  "May-Jun2026": GOOGLE_SCRIPT_URL,
-  "Jul-Aug2026": GOOGLE_SCRIPT_URL,
-  "Sep-Oct2026": GOOGLE_SCRIPT_URL,
-  "Nov-Dec2026": GOOGLE_SCRIPT_URL
-};
 
 interface DataFrameRow {
   id: string;
@@ -60,22 +41,23 @@ const resolveGoogleSheetName = (uiSheetName: string): string | null => {
 };
 
 export default function App() {
-  const { user, role, logout, isAuthenticated } = useAuth();
+  const { user, role, period, logout, isAuthenticated } = useAuth();
   const [activeSheet, setActiveSheet] = useState<string>("");
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodOption>("Jan-Feb2026");
   const [searchQuery, setSearchQuery] = useState("");
   const [df, setDf] = useState<Record<string, DataFrameRow[]>>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const getSelectedScriptLink = (): string => {
-    const selectedSheetLink = PERIOD_SHEET_LINKS[selectedPeriod];
-    if (!selectedSheetLink || selectedSheetLink.includes("PASTE_")) {
-      throw new Error(`Sheet link is not configured for ${selectedPeriod}. Please update PERIOD_SHEET_LINKS in App.tsx.`);
+    // The script link is now constant, but we keep the function for consistency
+    // and potential future variations.
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_")) {
+      throw new Error(`Google Script URL is not configured in App.tsx.`);
     }
-    return selectedSheetLink;
+    return GOOGLE_SCRIPT_URL;
   };
 
-  const postRowToSheet = async (uiSheetName: string, rowData: Record<string, any>) => {
+  const postRowToSheet = async (uiSheetName: string, rowData: Record<string, any>, submissionPeriod: PeriodOption) => {
     const targetSheetName = resolveGoogleSheetName(uiSheetName);
     if (!targetSheetName) {
       throw new Error(`Google sheet mapping missing for "${uiSheetName}"`);
@@ -92,13 +74,13 @@ export default function App() {
       body: JSON.stringify({
         sheetName: targetSheetName,
         uiSheetName,
-        period: selectedPeriod,
+        period: submissionPeriod,
         data: [values]
       })
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated && role) {
       const visibleSheets = role === 'student' ? STUDENT_SHEETS : FACULTY_SHEETS;
       if (visibleSheets.length > 0 && !activeSheet) {
@@ -113,7 +95,7 @@ export default function App() {
     return [];
   };
 
-  const appendToDf = (e: React.FormEvent<HTMLFormElement>) => {
+  const appendToDf = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const formEntries = Object.fromEntries(formData.entries());
@@ -179,7 +161,30 @@ export default function App() {
       isSynced: false
     };
 
-    setDf(prev => ({ ...prev, [activeSheet]: [...(prev[activeSheet] || []), newRow] }));
+    if (role === 'faculty') {
+      setIsSubmitting(true);
+      try {
+        if (!period) {
+          throw new Error("No reporting period selected.");
+        }
+        await postRowToSheet(activeSheet, newRow.data, period);
+        
+        // Add to local state for display, but mark as instantly synced
+        const syncedRow = { ...newRow, isSynced: true };
+        setDf((prev: Record<string, DataFrameRow[]>) => ({ ...prev, [activeSheet]: [...(prev[activeSheet] || []), syncedRow] }));
+        
+        alert("Data submitted successfully!");
+        (e.target as HTMLFormElement).reset();
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Direct submission error";
+        alert(message);
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
+
+    setDf((prev: Record<string, DataFrameRow[]>) => ({ ...prev, [activeSheet]: [...(prev[activeSheet] || []), newRow] }));
 
     if (role === 'student' && user && user.type === 'student') {
       const logEntry: DataFrameRow = {
@@ -196,7 +201,7 @@ export default function App() {
         isSyncing: false,
         isSynced: false
       };
-      setDf(prev => ({ ...prev, "Student Submission Logs": [...(prev["Student Submission Logs"] || []), logEntry] }));
+      setDf((prev: Record<string, DataFrameRow[]>) => ({ ...prev, "Student Submission Logs": [...(prev["Student Submission Logs"] || []), logEntry] }));
     }
 
     e.currentTarget.reset();
@@ -204,17 +209,20 @@ export default function App() {
 
   const syncRow = async (id: string) => {
     const sheetDf = df[activeSheet] || [];
-    const idx = sheetDf.findIndex(r => r.id === id);
+    const idx = sheetDf.findIndex((r: DataFrameRow) => r.id === id);
     const row = sheetDf[idx];
 
-    setDf(prev => {
+    setDf((prev: Record<string, DataFrameRow[]>) => {
       const updated = [...prev[activeSheet]];
       updated[idx] = { ...row, isSyncing: true };
       return { ...prev, [activeSheet]: updated };
     });
 
     try {
-      await postRowToSheet(activeSheet, row.data);
+      if (!period) {
+        throw new Error("No reporting period selected.");
+      }
+      await postRowToSheet(activeSheet, row.data, period);
 
       if (role === 'student' && user && user.type === 'student' && activeSheet !== "Student Submission Logs") {
         const logPayload = {
@@ -227,7 +235,7 @@ export default function App() {
           recordsAdded: 1
         };
 
-        postRowToSheet("Student Submission Logs", logPayload)
+        postRowToSheet("Student Submission Logs", logPayload, period)
           .catch((err) => {
             const message = err instanceof Error ? err.message : "Unable to sync Student Submission Logs";
             console.error(message);
@@ -236,9 +244,9 @@ export default function App() {
       }
 
       setTimeout(() => {
-        setDf(prev => {
+        setDf((prev: Record<string, DataFrameRow[]>) => {
           const updated = [...prev[activeSheet]];
-          const i = updated.findIndex(r => r.id === id);
+          const i = updated.findIndex((r: DataFrameRow) => r.id === id);
           if (i !== -1) updated[i] = { ...row, isSyncing: false, isSynced: true };
           return { ...prev, [activeSheet]: updated };
         });
@@ -246,9 +254,9 @@ export default function App() {
     } catch (err) {
       const message = err instanceof Error ? err.message : "Sync error";
       alert(message);
-      setDf(prev => {
+      setDf((prev: Record<string, DataFrameRow[]>) => {
         const updated = [...prev[activeSheet]];
-        const i = updated.findIndex(r => r.id === id);
+        const i = updated.findIndex((r: DataFrameRow) => r.id === id);
         if (i !== -1) updated[i] = { ...row, isSyncing: false };
         return { ...prev, [activeSheet]: updated };
       });
@@ -321,7 +329,7 @@ export default function App() {
                 type="text"
                 placeholder="Search..."
                 className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 pl-12 pr-4 text-xs focus:ring-4 focus:ring-mint-500/10 focus:border-mint-500 outline-none text-slate-900 font-bold"
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -359,19 +367,9 @@ export default function App() {
                 </h2>
               </div>
             </div>
-            <div className="self-start sm:self-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <select
-                value={selectedPeriod}
-                onChange={(e) => setSelectedPeriod(e.target.value as PeriodOption)}
-                className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700 focus:ring-4 focus:ring-mint-500/10 focus:border-mint-500 outline-none"
-                aria-label="Select reporting period"
-              >
-                {PERIOD_OPTIONS.map((period) => (
-                  <option key={period} value={period}>
-                    {period}
-                  </option>
-                ))}
-              </select>
+            <div className="self-start sm:self-auto flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700">
+              <Calendar size={14} />
+              <span>{period}</span>
             </div>
           </header>
 
@@ -398,56 +396,95 @@ export default function App() {
                       </div>
                     ))}
                   <div className="md:col-span-2 flex justify-stretch sm:justify-end mt-2 sm:mt-4">
-                    <button type="submit" className="w-full sm:w-auto bg-mint-600 text-white px-6 sm:px-9 lg:px-10 py-3 rounded-xl text-base font-black shadow-2xl hover:bg-mint-700 transition-all">
-                      Append to Local Review
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto bg-mint-600 hover:bg-mint-700 disabled:bg-mint-300 text-white font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-3"
+                    >
+                      {isSubmitting ? (
+                        <Loader2 size={18} className="animate-spin" />
+                      ) : (
+                        <Plus size={18} />
+                      )}
+                      {role === 'faculty' ? 'Submit Record' : 'Add to Batch'}
                     </button>
                   </div>
                 </form>
-              ) : <div className="p-8 sm:p-10 text-center font-bold text-slate-300">SELECT SECTION TO START</div>}
+              ) : (
+                <p className="text-center text-slate-500 font-semibold">Select a sheet from the sidebar to begin.</p>
+              )}
             </section>
 
-            <section className="pb-14 sm:pb-20 lg:pb-28">
-              <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-slate-400 mb-6 sm:mb-8 flex items-center gap-2">
-                <Layers size={16} /> Batch Verification
-              </h3>
-              {currentDf.length > 0 ? (
-                <div className="bg-white border border-mint-100 rounded-3xl sm:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-mint-100/5">
+            {currentDf.length > 0 && (
+              <section>
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-6 flex items-center gap-2">
+                  <Layers size={16} /> {role === 'faculty' ? 'Submission Log' : 'Batch Verification'}
+                </h3>
+                <div className="bg-white border border-mint-100 rounded-3xl shadow-xl shadow-mint-100/10 overflow-hidden">
                   <div className="overflow-x-auto">
-                    <table className="w-full min-w-[760px] text-left text-xs">
-                      <thead className="bg-slate-900 text-white uppercase font-black">
+                    <table className="w-full text-sm">
+                      <thead className="bg-slate-50">
                         <tr>
-                          <th className="px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7">IDX</th>
-                          {visibleSchema.map(col => <th key={col.name} className="px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7 text-slate-100">{col.label}</th>)}
-                          <th className="px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7 text-center">Action</th>
+                          {schema.map(field => (
+                            <th key={field.name} className="px-6 py-4 font-black text-slate-500 uppercase tracking-wider text-xs text-left whitespace-nowrap">
+                              {field.label}
+                            </th>
+                          ))}
+                          <th className="px-6 py-4 font-black text-slate-500 uppercase tracking-wider text-xs text-left">Status</th>
+                          {role !== 'faculty' && <th className="px-6 py-4"></th>}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100">
-                        {currentDf.map((row, i) => (
-                          <tr key={row.id} className={`${row.isSynced ? 'bg-mint-50/50 grayscale opacity-60' : 'hover:bg-mint-50/20'}`}>
-                            <td className="px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7 font-black text-mint-600 whitespace-nowrap">{i + 1}</td>
-                            {visibleSchema.map(col => (
-                              <td key={col.name} className={`px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7 font-bold italic underline decoration-mint-200 underline-offset-4 max-w-[220px] break-words ${row.isSynced ? 'line-through text-slate-400' : 'text-slate-900'}`}>
-                                {row.data[col.name]}
+                      <tbody className="divide-y divide-mint-100">
+                        {currentDf.map(row => (
+                          <tr key={row.id} className="hover:bg-mint-50/50 transition-colors">
+                            {schema.map(field => (
+                              <td key={field.name} className="px-6 py-4 whitespace-nowrap text-slate-700 font-medium max-w-xs truncate">
+                                {String(row.data[field.name] ?? '')}
                               </td>
                             ))}
-                            <td className="px-5 sm:px-7 lg:px-10 py-5 sm:py-6 lg:py-7">
-                              <div className="flex justify-center gap-3 sm:gap-4">
-                                <button onClick={() => syncRow(row.id)} disabled={row.isSynced || row.isSyncing} className={`h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-2xl transition-all shadow-lg ${row.isSynced ? 'bg-mint-500 text-white' : 'bg-white border-2 border-mint-500 text-mint-600 hover:bg-mint-500 hover:text-white'}`}>
-                                  {row.isSyncing ? <Loader2 size={18} className="animate-spin" /> : <Check size={18} strokeWidth={3} />}
-                                </button>
-                                <button onClick={() => setDf(p => ({...p, [activeSheet]: p[activeSheet].filter(r => r.id !== row.id)}))} className="h-10 w-10 sm:h-11 sm:w-11 flex items-center justify-center rounded-2xl bg-red-50 text-red-400 hover:bg-red-500 hover:text-white transition-all">
-                                  <Trash2 size={18} />
-                                </button>
-                              </div>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              {row.isSynced ? (
+                                <span className="inline-flex items-center gap-1.5 bg-teal-100 text-teal-700 font-bold text-xs px-2.5 py-1 rounded-full">
+                                  <Check size={14} /> Synced
+                                </span>
+                              ) : row.isSyncing ? (
+                                <span className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-full">
+                                  <Loader2 size={14} className="animate-spin" /> Syncing...
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 font-bold text-xs px-2.5 py-1 rounded-full">
+                                  Not Synced
+                                </span>
+                              )}
                             </td>
+                            {role !== 'faculty' && (
+                              <td className="px-6 py-4 whitespace-nowrap text-right space-x-2">
+                                <button
+                                  onClick={() => syncRow(row.id)}
+                                  disabled={row.isSyncing || row.isSynced}
+                                  className="p-2 bg-mint-100 text-mint-700 rounded-lg hover:bg-mint-200 disabled:bg-slate-100 disabled:text-slate-400 transition-colors"
+                                  aria-label="Sync row"
+                                >
+                                  <Check size={16} />
+                                </button>
+                                <button
+                                  onClick={() => setDf((prev: Record<string, DataFrameRow[]>) => ({ ...prev, [activeSheet]: prev[activeSheet].filter((r: DataFrameRow) => r.id !== row.id) }))}
+                                  disabled={row.isSynced}
+                                  className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 disabled:opacity-50 transition-colors"
+                                  aria-label="Delete row"
+                                >
+                                  <Trash2 size={16} />
+                                </button>
+                              </td>
+                            )}
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
-              ) : <div className="h-40 sm:h-48 border-4 border-dotted border-mint-100 rounded-3xl sm:rounded-[2.5rem] flex items-center justify-center text-slate-300 font-black tracking-widest italic bg-white/50 uppercase text-center px-6">No Data Staged</div>}
-            </section>
+              </section>
+            )}
           </div>
         </main>
       </div>

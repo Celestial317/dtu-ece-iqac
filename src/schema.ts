@@ -1,3 +1,13 @@
+export const PERIOD_OPTIONS = [
+  "Jan-Feb2026",
+  "Mar-Apr2026",
+  "May-Jun2026",
+  "Jul-Aug2026",
+  "Sep-Oct2026",
+  "Nov-Dec2026"
+] as const;
+export type PeriodOption = (typeof PERIOD_OPTIONS)[number];
+
 export interface Field {
   name: string;
   label: string;
@@ -174,6 +184,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Links to relevant document", type: "url" }
   ],
   "Student Higher Education": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "studentName", label: "Name of the qualifying student", type: "text" },
     { name: "year", label: "Year of Qualifying", type: "number" },
     { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
