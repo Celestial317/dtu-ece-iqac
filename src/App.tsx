@@ -57,6 +57,37 @@ export default function App() {
   const [df, setDf] = useState<Record<string, DataFrameRow[]>>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const getSelectedScriptLink = (): string => {
+    const selectedSheetLink = PERIOD_SHEET_LINKS[selectedPeriod];
+    if (!selectedSheetLink || selectedSheetLink.includes("PASTE_")) {
+      throw new Error(`Sheet link is not configured for ${selectedPeriod}. Please update PERIOD_SHEET_LINKS in App.tsx.`);
+    }
+    return selectedSheetLink;
+  };
+
+  const postRowToSheet = async (uiSheetName: string, rowData: Record<string, any>) => {
+    const targetSheetName = resolveGoogleSheetName(uiSheetName);
+    if (!targetSheetName) {
+      throw new Error(`Google sheet mapping missing for "${uiSheetName}"`);
+    }
+
+    const sheetSchema = SHEET_CONFIGS[uiSheetName] || [];
+    const values = sheetSchema.map(f => rowData[f.name]);
+    const selectedSheetLink = getSelectedScriptLink();
+
+    await fetch(selectedSheetLink, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        sheetName: targetSheetName,
+        uiSheetName,
+        period: selectedPeriod,
+        data: [values]
+      })
+    });
+  };
+
   React.useEffect(() => {
     if (isAuthenticated && role) {
       const visibleSheets = role === 'student' ? STUDENT_SHEETS : FACULTY_SHEETS;
@@ -140,6 +171,14 @@ export default function App() {
         isSynced: false
       };
       setDf(prev => ({ ...prev, "Student Submission Logs": [...(prev["Student Submission Logs"] || []), logEntry] }));
+
+      // Auto-sync one log row because logs sheet is not in the visible sidebar list.
+      postRowToSheet("Student Submission Logs", logEntry.data)
+        .catch((err) => {
+          const message = err instanceof Error ? err.message : "Unable to sync Student Submission Logs";
+          console.error(message);
+          alert(message);
+        });
     }
 
     e.currentTarget.reset();
@@ -157,28 +196,7 @@ export default function App() {
     });
 
     try {
-      // Pandas-like .values extraction based on schema order
-      const values = SHEET_CONFIGS[activeSheet].map(f => row.data[f.name]);
-      const targetSheetName = resolveGoogleSheetName(activeSheet);
-      const selectedSheetLink = PERIOD_SHEET_LINKS[selectedPeriod];
-      if (!targetSheetName) {
-        throw new Error(`Google sheet mapping missing for "${activeSheet}"`);
-      }
-      if (!selectedSheetLink || selectedSheetLink.includes("PASTE_")) {
-        throw new Error(`Sheet link is not configured for ${selectedPeriod}. Please update PERIOD_SHEET_LINKS in App.tsx.`);
-      }
-      
-      await fetch(selectedSheetLink, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({
-          sheetName: targetSheetName,
-          uiSheetName: activeSheet,
-          period: selectedPeriod,
-          data: [values]
-        })
-      });
+      await postRowToSheet(activeSheet, row.data);
 
       setTimeout(() => {
         setDf(prev => {
