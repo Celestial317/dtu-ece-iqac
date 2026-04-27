@@ -16,7 +16,6 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "link", label: "Link to the relevant document", type: "url" }
 ],
 "Detail of Patents filed, publish": [
-  { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
   { name: "name", label: "Name of the Faculty/student author of the patent", type: "text" },
   { name: "patentNo", label: "Patent Number", type: "text" },
   { name: "awardDate", label: "Date of Award", type: "date" },
