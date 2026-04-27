@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { PeriodOption } from '../schema';
+import type { PeriodOption } from '../schema';
 
 export type UserRole = 'student' | 'faculty' | null;
 

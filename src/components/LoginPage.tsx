@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LogIn, User, Lock, Calendar } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { PERIOD_OPTIONS, PeriodOption } from '../schema';
+import { PERIOD_OPTIONS, type PeriodOption } from '../schema';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;

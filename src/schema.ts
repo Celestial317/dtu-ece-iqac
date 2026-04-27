@@ -185,11 +185,12 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
   "Student Higher Education": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
-    { name: "studentName", label: "Name of the qualifying student", type: "text" },
-    { name: "year", label: "Year of Qualifying", type: "number" },
-    { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
-    { name: "examName", label: "Name of competitive examination", type: "text" },
-    { name: "docLink", label: "Links to relevant document", type: "url" }
+    { name: "examName", label: "Name of the Exam Qualified/Course", type: "text" },
+    { name: "institute", label: "Institute of Admission", type: "text" },
+    { name: "courseName", label: "Course Name", type: "text" },
+    { name: "studentName", label: "Name of the Student", type: "text" },
+    { name: "studentId", label: "Student ID Number", type: "text" },
+    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
   ],
   "Details of awards, medals etc": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
