@@ -247,17 +247,17 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Awards, recognition, fellowship": "Awards, recognition, fellowship",
   "Recognition by govt agency": "Recognition by govt agency",
   "Grants for research projects": "Grants for research projects",
-  "A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
-  "B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
-  "C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
+  "12A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
+  "12B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
+  "12C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
   "Collaborative activities": "Collaborative activities",
   "E-content developed by teacher": "E-content developed by teacher",
   "Details of awards, medals etc": "Details of awards, medals etc",
   "Students provided fin. support": "Students provided fin. support",
   "Extension & outreach activities": "Extension & outreach activities",
-  "A Enrolment in Higher Education": "Enrolment in Higher Education",
-  "B Details of National/Internation Level Exams": "Details of National/Internation Level Exams",
-  "C Qualification in any Competitive Exam/Higher Studies": "Competitive Exam/Higher Studies",
+  "5A Enrolment in Higher Education": "Enrolment in Higher Education",
+  "5B Details of National/Internation Level Exams": "Details of National/Internation Level Exams",
+  "5C Qualification in any Competitive Exam/Higher Studies": "Competitive Exam/Higher Studies",
   "Student Submission Logs": "logs"
 };
 
@@ -265,16 +265,16 @@ const STUDENT_ONLY_SHEETS = [
   "Detail of Patents filed, publish",
   "Details of awards, medals etc",
   "Students provided fin. support",
-  "A Enrolment in Higher Education",
-  "B Details of National/Internation Level Exams",
-  "C Qualification in any Competitive Exam/Higher Studies",
+  "5A Enrolment in Higher Education",
+  "5B Details of National/Internation Level Exams",
+  "5C Qualification in any Competitive Exam/Higher Studies",
 ];
 
 
 // Role-based sheet access control
 export const STUDENT_SHEETS = [
+  "Extension & outreach activities",
   ...STUDENT_ONLY_SHEETS,
-  "Extension & outreach activities"
 ];
 
 export const FACULTY_SHEETS = [
@@ -290,9 +290,9 @@ export const FACULTY_SHEETS = [
   "Awards, recognition, fellowship",
   "Recognition by govt agency",
   "Grants for research projects",
-  "A Revenue generated (Consultancy)",
-  "B Revenue generated (Corporate Training)",
-  "C Revenue generated (Collaborations)",
+  "12A Revenue generated (Consultancy)",
+  "12B Revenue generated (Corporate Training)",
+  "12C Revenue generated (Collaborations)",
   "Collaborative activities",
   "E-content developed by teacher",
   "Extension & outreach activities",
