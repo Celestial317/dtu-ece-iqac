@@ -171,14 +171,6 @@ export default function App() {
         isSynced: false
       };
       setDf(prev => ({ ...prev, "Student Submission Logs": [...(prev["Student Submission Logs"] || []), logEntry] }));
-
-      // Auto-sync one log row because logs sheet is not in the visible sidebar list.
-      postRowToSheet("Student Submission Logs", logEntry.data)
-        .catch((err) => {
-          const message = err instanceof Error ? err.message : "Unable to sync Student Submission Logs";
-          console.error(message);
-          alert(message);
-        });
     }
 
     e.currentTarget.reset();
@@ -197,6 +189,25 @@ export default function App() {
 
     try {
       await postRowToSheet(activeSheet, row.data);
+
+      if (role === 'student' && user && user.type === 'student' && activeSheet !== "Student Submission Logs") {
+        const logPayload = {
+          srNo: '',
+          timestamp: new Date().toLocaleString(),
+          studentName: user.name,
+          rollNumber: user.rollNumber,
+          phoneNumber: user.phoneNumber,
+          sheetName: activeSheet,
+          recordsAdded: 1
+        };
+
+        postRowToSheet("Student Submission Logs", logPayload)
+          .catch((err) => {
+            const message = err instanceof Error ? err.message : "Unable to sync Student Submission Logs";
+            console.error(message);
+            alert(message);
+          });
+      }
 
       setTimeout(() => {
         setDf(prev => {
