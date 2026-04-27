@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Database, Search, LayoutDashboard, Plus, Trash2, 
+  Search, LayoutDashboard, Plus, Trash2, 
   Check, ChevronRight, Loader2, Layers, Menu, X, LogOut
 } from 'lucide-react';
 import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP } from './schema';
@@ -372,9 +372,6 @@ export default function App() {
                   </option>
                 ))}
               </select>
-              <div className="bg-slate-900 text-white px-5 sm:px-6 lg:px-8 py-3 rounded-2xl text-[11px] sm:text-xs font-black shadow-xl flex items-center gap-2 whitespace-nowrap">
-                <Database size={14} /> Cloud Ready
-              </div>
             </div>
           </header>
 
