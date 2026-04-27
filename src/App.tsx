@@ -9,6 +9,15 @@ import LoginPage from './components/LoginPage';
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4dBU1yCZgfBpya0wMaPNClTmws6R9xUiHYAmhJI_8686zTm5zCSVfUgImoUX0HQ-0TA/exec";
 
+const PERIOD_OPTIONS = ["Jan-Feb2026", "Mar-Apr2026", "May-Jun2026"] as const;
+type PeriodOption = (typeof PERIOD_OPTIONS)[number];
+
+const PERIOD_SHEET_LINKS: Record<PeriodOption, string> = {
+  "Jan-Feb2026": GOOGLE_SCRIPT_URL,
+  "Mar-Apr2026": "PASTE_MAR_APR_2026_SHEET_LINK_HERE",
+  "May-Jun2026": "PASTE_MAY_JUN_2026_SHEET_LINK_HERE"
+};
+
 interface DataFrameRow {
   id: string;
   data: Record<string, any>;
@@ -43,6 +52,7 @@ const resolveGoogleSheetName = (uiSheetName: string): string | null => {
 export default function App() {
   const { user, role, logout, isAuthenticated } = useAuth();
   const [activeSheet, setActiveSheet] = useState<string>("");
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodOption>("Jan-Feb2026");
   const [searchQuery, setSearchQuery] = useState("");
   const [df, setDf] = useState<Record<string, DataFrameRow[]>>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -150,17 +160,22 @@ export default function App() {
       // Pandas-like .values extraction based on schema order
       const values = SHEET_CONFIGS[activeSheet].map(f => row.data[f.name]);
       const targetSheetName = resolveGoogleSheetName(activeSheet);
+      const selectedSheetLink = PERIOD_SHEET_LINKS[selectedPeriod];
       if (!targetSheetName) {
         throw new Error(`Google sheet mapping missing for "${activeSheet}"`);
       }
+      if (!selectedSheetLink || selectedSheetLink.includes("PASTE_")) {
+        throw new Error(`Sheet link is not configured for ${selectedPeriod}. Please update PERIOD_SHEET_LINKS in App.tsx.`);
+      }
       
-      await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(selectedSheetLink, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           sheetName: targetSheetName,
           uiSheetName: activeSheet,
+          period: selectedPeriod,
           data: [values]
         })
       });
@@ -289,8 +304,22 @@ export default function App() {
                 </h2>
               </div>
             </div>
-            <div className="self-start sm:self-auto bg-slate-900 text-white px-5 sm:px-6 lg:px-8 py-3 rounded-2xl text-[11px] sm:text-xs font-black shadow-xl flex items-center gap-2 whitespace-nowrap">
-              <Database size={14} /> Cloud Ready
+            <div className="self-start sm:self-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <select
+                value={selectedPeriod}
+                onChange={(e) => setSelectedPeriod(e.target.value as PeriodOption)}
+                className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700 focus:ring-4 focus:ring-mint-500/10 focus:border-mint-500 outline-none"
+                aria-label="Select reporting period"
+              >
+                {PERIOD_OPTIONS.map((period) => (
+                  <option key={period} value={period}>
+                    {period}
+                  </option>
+                ))}
+              </select>
+              <div className="bg-slate-900 text-white px-5 sm:px-6 lg:px-8 py-3 rounded-2xl text-[11px] sm:text-xs font-black shadow-xl flex items-center gap-2 whitespace-nowrap">
+                <Database size={14} /> Cloud Ready
+              </div>
             </div>
           </header>
 
