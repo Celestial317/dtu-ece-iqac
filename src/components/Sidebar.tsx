@@ -39,7 +39,7 @@ export function Sidebar({ active, onSelect }: SidebarProps) {
       </div>
 
       <nav className="flex-1 overflow-y-auto px-3 sm:px-4 pb-8 sm:pb-10 space-y-1 custom-scrollbar">
-        {filtered.map((name: string) => (
+        {filtered.map((name: string, index: number) => (
           <button
             key={name}
             onClick={() => onSelect(name)}
@@ -49,7 +49,7 @@ export function Sidebar({ active, onSelect }: SidebarProps) {
               : 'text-slate-500 hover:bg-mint-50 hover:text-mint-700 font-bold'
             }`}
           >
-            <span className="truncate uppercase tracking-tight text-left">{name}</span>
+            <span className="truncate uppercase tracking-tight text-left">{index + 1}. {name}</span>
             <ChevronRight size={14} className={active === name ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} />
           </button>
         ))}

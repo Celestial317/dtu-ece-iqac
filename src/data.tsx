@@ -1,19 +1,17 @@
 // src/data.ts
 
 export const SHEET_NAMES = [
-  "Basic Information", "Achievements of the department", "Detail of Patents filed,publish",
+  "Basic Information", "Detail of Patents filed,publish",
   "Journal Publications", "Conference Publications", "Books and chapters",
-  "Fin. support to attend Conf etc", "Current stock of Desktop,HPC et",
+  "Fin. support to attend Conf etc",
   "Teachers using ICT", "Teachers attending PDP etc", "Visit of faculty to other inst",
-  "Professional Affiliations", "Prog. where syllabus revision", "Student centric methods",
-  "academic and stress related iss", "Awards, recognition, fellowship",
+  "Professional Affiliations", "Awards, recognition, fellowship",
   "Recognition by govt agency", "Grants for research projects", "Revenue generated",
-  "Collaborative activities", "Linkages with inst., industries", "E-content developed by teacher",
-  "Capability development Schemes", "Students-Comp Exam, Higher Edu.",
+  "Collaborative activities", "E-content developed by teacher",
+  "Student Higher Studies (Progressed)", "Student Higher Studies (Qualified)", "Student Higher Education",
   "Details of awards, medals etc", "Students provided fin. support",
-  "Programmes organized by Dept.", "Staff Training", "Functional MoUs with institutio",
   "Extension & outreach activities", "Other Important information",
-  "Departmental Library Informatio", "PhD Defense Details"
+  "Departmental Library Informatio"
 ];
 
 // Define the fields for each sheet
