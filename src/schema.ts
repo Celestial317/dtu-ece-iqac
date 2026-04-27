@@ -247,28 +247,27 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Awards, recognition, fellowship": "Awards, recognition, fellowship",
   "Recognition by govt agency": "Recognition by govt agency",
   "Grants for research projects": "Grants for research projects",
-  "12A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
-  "12B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
-  "12C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
+  "A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
+  "B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
+  "C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
   "Collaborative activities": "Collaborative activities",
   "E-content developed by teacher": "E-content developed by teacher",
-  "5A Enrolment in Higher Education": "Enrolment in Higher Education",
-  "5B Details of National/Internation Level Exams": "Details of National/Internation Level Exams",
-  "5C Qualification in any Competitive Exam/Higher Studies": "Competitive Exam/Higher Studies",
   "Details of awards, medals etc": "Details of awards, medals etc",
   "Students provided fin. support": "Students provided fin. support",
   "Extension & outreach activities": "Extension & outreach activities",
-  "Departmental Library Information": "Departmental Library Information",
+  "A Enrolment in Higher Education": "Enrolment in Higher Education",
+  "B Details of National/Internation Level Exams": "Details of National/Internation Level Exams",
+  "C Qualification in any Competitive Exam/Higher Studies": "Competitive Exam/Higher Studies",
   "Student Submission Logs": "logs"
 };
 
 const STUDENT_ONLY_SHEETS = [
   "Detail of Patents filed, publish",
-  "5A Enrolment in Higher Education",
-  "5B Details of National/Internation Level Exams",
-  "5C Qualification in any Competitive Exam/Higher Studies",
   "Details of awards, medals etc",
-  "Students provided fin. support"
+  "Students provided fin. support",
+  "A Enrolment in Higher Education",
+  "B Details of National/Internation Level Exams",
+  "C Qualification in any Competitive Exam/Higher Studies",
 ];
 
 
@@ -291,9 +290,9 @@ export const FACULTY_SHEETS = [
   "Awards, recognition, fellowship",
   "Recognition by govt agency",
   "Grants for research projects",
-  "12A Revenue generated (Consultancy)",
-  "12B Revenue generated (Corporate Training)",
-  "12C Revenue generated (Collaborations)",
+  "A Revenue generated (Consultancy)",
+  "B Revenue generated (Corporate Training)",
+  "C Revenue generated (Collaborations)",
   "Collaborative activities",
   "E-content developed by teacher",
   "Extension & outreach activities",
