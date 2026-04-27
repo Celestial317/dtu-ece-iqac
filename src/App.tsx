@@ -7,7 +7,7 @@ import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP } 
 import { useAuth } from './contexts/AuthContext';
 import LoginPage from './components/LoginPage';
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrxRR0eKkJcVQpx7hOT7tPk9eug5PQlH7bCNWyvJh5Prb5EWFooe-qhKDTVQllreKU/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4dBU1yCZgfBpya0wMaPNClTmws6R9xUiHYAmhJI_8686zTm5zCSVfUgImoUX0HQ-0TA/exec";
 
 interface DataFrameRow {
   id: string;
