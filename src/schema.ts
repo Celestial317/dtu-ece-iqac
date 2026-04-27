@@ -122,7 +122,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "amountInr", label: "Amount in INR", type: "number" },
     { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
-  "Revenue generated (Consultancy)": [
+  "12A Revenue generated (Consultancy)": [
     { name: "consultantName", label: "Name of the consultant", type: "text" },
     { name: "projectName", label: "Name of consultancy project", type: "text" },
     { name: "totalGrant", label: "Total Grant (Rs.)", type: "number" },
@@ -131,7 +131,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
     { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
-  "Revenue generated (Corporate Training)": [
+  "12B Revenue generated (Corporate Training)": [
     { name: "teacherNames", label: "Names of the teacher-consultants", type: "text" },
     { name: "trainingTitle", label: "Title of corporate training programme", type: "text" },
     { name: "seekingAgency", label: "Agency seeking training with contact details", type: "text" },
@@ -139,7 +139,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
     { name: "traineeCount", label: "Number of trainees", type: "number" }
   ],
-  "Revenue generated (Collaborations)": [
+  "12C Revenue generated (Collaborations)": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
     { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
@@ -169,21 +169,21 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "launchDate", label: "Date of launching e-content", type: "text" },
     { name: "docLink", label: "Link of the relevant document", type: "url" }
   ],
-  "Student Higher Studies (Progressed)": [
+  "5A Enrolment in Higher Education": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "studentName", label: "Name of the outgoing student", type: "text" },
     { name: "organization", label: "Organization joined for Higher Education", type: "text" },
     { name: "programDetails", label: "Details of the program enrolled", type: "text" },
     { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
-  "Student Higher Studies (Qualified)": [
+  "5B Details of National/Internation Level Exams": [
     { name: "studentName", label: "Name of the qualifying student", type: "text" },
     { name: "year", label: "Year of Qualifying", type: "number" },
     { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
     { name: "examName", label: "Name of competitive examination", type: "text" },
     { name: "docLink", label: "Links to relevant document", type: "url" }
   ],
-  "Student Higher Education": [
+  "5C Qualification in any Competitive Exam/Higher Studies": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "examName", label: "Name of the Exam Qualified/Course", type: "text" },
     { name: "institute", label: "Institute of Admission", type: "text" },
@@ -221,14 +221,6 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "participantCount", label: "No. of Participants", type: "number" },
     { name: "geoTagLink", label: "Report with Geo-Tag Photograph (Link)", type: "url" }
   ],
-  "Departmental Library Information": [
-    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
-    { name: "bookTitle", label: "Title of The Book", type: "text" },
-    { name: "authors", label: "Authors of Book", type: "text" },
-    { name: "publisher", label: "Publisher", type: "text" },
-    { name: "edition", label: "Edition", type: "text" },
-    { name: "pubYear", label: "Year of Publication", type: "number" }
-  ],
   "Student Submission Logs": [
     { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
     { name: "timestamp", label: "Submission Date & Time", type: "text", autoGenerate: true },
@@ -255,14 +247,14 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Awards, recognition, fellowship": "Awards, recognition, fellowship",
   "Recognition by govt agency": "Recognition by govt agency",
   "Grants for research projects": "Grants for research projects",
-  "Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
-  "Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
-  "Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
+  "12A Revenue generated (Consultancy)": "Revenue generated (Consultancy)",
+  "12B Revenue generated (Corporate Training)": "Revenue generated (Corporate Training)",
+  "12C Revenue generated (Collaborations)": "Revenue generated (Collaborations)",
   "Collaborative activities": "Collaborative activities",
   "E-content developed by teacher": "E-content developed by teacher",
-  "Student Higher Studies (Progressed)": "Student Higher Studies (Progressed)",
-  "Student Higher Studies (Qualified)": "Student Higher Studies (Qualified)",
-  "Student Higher Education": "Student Higher Education",
+  "5A Enrolment in Higher Education": "Student Higher Studies (Progressed)",
+  "5B Details of National/Internation Level Exams": "Student Higher Studies (Qualified)",
+  "5C Qualification in any Competitive Exam/Higher Studies": "Student Higher Education",
   "Details of awards, medals etc": "Details of awards, medals etc",
   "Students provided fin. support": "Students provided fin. support",
   "Extension & outreach activities": "Extension & outreach activities",
@@ -272,12 +264,13 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
 
 const STUDENT_ONLY_SHEETS = [
   "Detail of Patents filed, publish",
-  "Student Higher Studies (Progressed)",
-  "Student Higher Studies (Qualified)",
-  "Student Higher Education",
+  "5A Enrolment in Higher Education",
+  "5B Details of National/Internation Level Exams",
+  "5C Qualification in any Competitive Exam/Higher Studies",
   "Details of awards, medals etc",
   "Students provided fin. support"
 ];
+
 
 // Role-based sheet access control
 export const STUDENT_SHEETS = [
@@ -285,9 +278,27 @@ export const STUDENT_SHEETS = [
   "Extension & outreach activities"
 ];
 
-export const FACULTY_SHEETS = Object.keys(SHEET_CONFIGS).filter(
-  (sheet) => sheet !== "Student Submission Logs" && !STUDENT_ONLY_SHEETS.includes(sheet)
-);
+export const FACULTY_SHEETS = [
+  "Detail of Patents filed, publish",
+  "Journal Publications",
+  "Conference Publications",
+  "Books and chapters",
+  "Fin. support to attend Conf etc",
+  "Teachers using ICT",
+  "Teachers attending PDP/FDP etc",
+  "Visit of faculty to other inst",
+  "Professional Affiliations",
+  "Awards, recognition, fellowship",
+  "Recognition by govt agency",
+  "Grants for research projects",
+  "12A Revenue generated (Consultancy)",
+  "12B Revenue generated (Corporate Training)",
+  "12C Revenue generated (Collaborations)",
+  "Collaborative activities",
+  "E-content developed by teacher",
+  "Extension & outreach activities",
+  "Departmental Library Information"
+];
 
 export const ALL_SHEETS = Object.keys(SHEET_CONFIGS).filter(
   (sheet) => sheet !== "Student Submission Logs"
