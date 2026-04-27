@@ -44,6 +44,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "link", label: "Link to article/paper/abstract/DOI", type: "url" }
 ],
   "Books and chapters": [
+  { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
   { name: "teacherName", label: "Name of the teacher", type: "text" },
   { name: "bookTitle", label: "Title of the book published", type: "text" },
   { name: "chapterTitle", label: "Title of the chapters published", type: "text" },
