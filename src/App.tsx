@@ -308,7 +308,9 @@ export default function App() {
                         </label>
                         <input
                           name={field.name}
-                          type={field.type}
+                          type={field.type === 'url' ? 'text' : field.type}
+                          inputMode={field.type === 'url' ? 'url' : undefined}
+                          placeholder={field.type === 'url' ? 'e.g. link.com or https://link.com' : undefined}
                           required
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
                         />

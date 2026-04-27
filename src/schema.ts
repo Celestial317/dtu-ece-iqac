@@ -15,7 +15,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "studentCount", label: "Number of students undertaking", type: "number" },
   { name: "link", label: "Link to the relevant document", type: "url" }
 ],
-"Detail of Patents filed,publish": [
+"Detail of Patents filed, publish": [
   { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
   { name: "name", label: "Name of the Faculty/student author of the patent", type: "text" },
   { name: "patentNo", label: "Patent Number", type: "text" },
@@ -35,6 +35,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "ugcStatus", label: "Is it listed in UGC Care list", type: "text" }
 ],
   "Conference Publications": [
+  { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
   { name: "title", label: "Title of paper", type: "text" },
   { name: "authors", label: "Name of the Author/s", type: "text" },
   { name: "dept", label: "Department of teacher", type: "text" },
@@ -44,7 +45,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   { name: "link", label: "Link to article/paper/abstract/DOI", type: "url" }
 ],
   "Books and chapters": [
-  { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
+  { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
   { name: "teacherName", label: "Name of the teacher", type: "text" },
   { name: "bookTitle", label: "Title of the book published", type: "text" },
   { name: "chapterTitle", label: "Title of the chapters published", type: "text" },
@@ -62,7 +63,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "purpose", label: "Purpose (Membership fee/travel/Registration fee)", type: "text" }
   ],
 
-  "Current stock of Desktop,HPC et": [
+  "Current stock of Desktop, HPC etc": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "labName", label: "Name of Faculty/Lab", type: "text" },
     { name: "desktops", label: "No. of Desktop", type: "number" },
     { name: "servers", label: "No. of Server", type: "number" },
@@ -73,6 +75,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Teachers using ICT": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "teacherName", label: "Name of teachers using ICT (LMS, e-Resources)", type: "text" },
     { name: "ictTools", label: "ICT tools and resources used", type: "text" },
     { name: "ictClassrooms", label: "Number of ICT enabled classrooms", type: "text" },
@@ -86,18 +89,20 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "duration", label: "Duration (in No. of days)", type: "number" },
     { name: "dates", label: "Start Date and End Date", type: "text" },
     { name: "organizer", label: "Name of the Organising Institution", type: "text" },
-    { name: "proofLink", label: "Attach Proof (Document Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Visit of faculty to other inst": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "name", label: "Name", type: "text" },
     { name: "designationOrg", label: "Designation & Organization", type: "text" },
     { name: "topic", label: "Topic", type: "text" },
     { name: "date", label: "Date", type: "date" },
-    { name: "proofLink", label: "Attach Proof (Document Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Professional Affiliations": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "facultyName", label: "Name of Faculty", type: "text" },
     { name: "bodyName", label: "Name of Professional Body", type: "text" },
     { name: "membershipType", label: "Type of Membership", type: "text" },
@@ -112,6 +117,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Link to the relevant document", type: "url" }
   ],
   "Student centric methods": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "courseName", label: "Course Name", type: "text" },
     { name: "courseCode", label: "Course Code", type: "text" },
     { name: "progName", label: "Name of the Programme", type: "text" },
@@ -120,7 +126,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Relevant document/ link", type: "url" }
   ],
 
-  "academic and stress related iss": [
+  "academic and stress related issues": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "mentorName", label: "Name of Mentor", type: "text" },
     { name: "studentDetails", label: "Details of students", type: "text" },
     { name: "ratio", label: "Mentor/ mentee ratio", type: "text" },
@@ -133,10 +140,11 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "awardingBody", label: "Name of the awarding body", type: "text" },
     { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text" },
     { name: "year", label: "Year of award", type: "number" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Recognition by govt agency": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "deptName", label: "Name of the Department", type: "text" },
     { name: "schemeName", label: "Name of the Scheme", type: "text" },
     { name: "fundingAgency", label: "Name of the funding agency", type: "text" },
@@ -146,13 +154,14 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
   "Grants for research projects": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "piName", label: "Name of PI/ Co-PI/ Chair Holder", type: "text" },
     { name: "projectTitle", label: "Title of project/ endowment/ Chair", type: "text" },
     { name: "fundingAgency", label: "Name of the funding agency", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
     { name: "awardYear", label: "Year of award or sanction", type: "number" },
     { name: "amountInr", label: "Amount in INR", type: "number" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Revenue generated (Consultancy)": [
@@ -175,6 +184,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Revenue generated (Collaborations)": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
     { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
     { name: "participantName", label: "Name of the participant", type: "text" },
@@ -185,6 +195,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Relevant Documents / Link", type: "url" }
   ],
   "Collaborative activities": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityType", label: "Type of Activity (Research, Faculty/Student Exchange)", type: "text" },
     { name: "organization", label: "Name of Institution/Organization", type: "text" },
     { name: "year", label: "Year", type: "number" },
@@ -202,10 +213,11 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "purpose", label: "Purpose of MOU/Collaboration", type: "text" },
     { name: "activities", label: "Actual activities under MOU", type: "text" },
     { name: "activityDate", label: "Date of the activity conducted", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "E-content developed by teacher": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "teacherName", label: "Name of the teacher", type: "text" },
     { name: "moduleName", label: "Name of the module", type: "text" },
     { name: "platform", label: "Platform (e.g., SWAYAM, NPTEL)", type: "text" },
@@ -214,17 +226,19 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Capability development Schemes": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "schemeName", label: "Name of the capability enhancement scheme", type: "text" },
     { name: "year", label: "Year of implementation", type: "number" },
     { name: "enrolledCount", label: "Number of students enrolled", type: "number" },
     { name: "agencies", label: "Agencies involved with contact details", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
   "Students-Comp Exam, Higher Edu. (Progressed)": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "studentName", label: "Name of the outgoing student", type: "text" },
     { name: "organization", label: "Organization joined for Higher Education", type: "text" },
     { name: "programDetails", label: "Details of the program enrolled", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Students-Comp Exam, Higher Edu. (Qualified)": [
@@ -236,6 +250,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Details of awards, medals etc": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "year", label: "Year", type: "number" },
     { name: "awardName", label: "Name of the award/ medal", type: "text" },
     { name: "level", label: "National/ International", type: "text" },
@@ -246,6 +261,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Students provided fin. support": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "entryDate", label: "Date", type: "date" },
     { name: "studentName", label: "Name of Student", type: "text" },
     { name: "pan", label: "PAN", type: "text" },
@@ -255,6 +271,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "supportDate", label: "Date of Support", type: "date" }
   ],
   "Programmes organized by Dept.": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "year", label: "Year", type: "number" },
     { name: "teachingTitle", label: "Title of professional development (Teaching)", type: "text" },
     { name: "adminTitle", label: "Title of administrative training", type: "text" },
@@ -265,24 +282,26 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "Staff Training": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "officialName", label: "Name of Official", type: "text" },
     { name: "programme", label: "Programme", type: "text" },
     { name: "dates", label: "Dates", type: "text" },
     { name: "institution", label: "Organizing institution", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
-  "Functional MoUs with institutio": [
+  "Functional MoUs with institution": [
     { name: "signingYear", label: "Year of signing MoU", type: "number" },
     { name: "organization", label: "Name of the organization with whom MOU/Collaboration", type: "text" },
     { name: "duration", label: "Duration", type: "text" },
     { name: "purpose", label: "Purpose of MOU/Collaboration", type: "text" },
     { name: "activities", label: "Actual activities under each MOU (year-wise)", type: "text" },
     { name: "activityDate", label: "Date of the activity conducted", type: "text" },
-    { name: "proofLink", label: "Attach Relevant (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Relevant (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
   ],
 
   "Extension & outreach activities": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "resourcePerson", label: "Resource person", type: "text" },
     { name: "date", label: "Date", type: "date" },
     { name: "location", label: "Location", type: "text" },
@@ -290,7 +309,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "participantCount", label: "No. of Participants", type: "number" },
     { name: "geoTagLink", label: "Report with Geo-Tag Photograph (Link)", type: "url" }
   ],
-  "Other Info (Employability/Skill)": [
+  "Other Important Info (Employability/Skill)": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "courseName", label: "Name of the Course", type: "text" },
     { name: "courseCode", label: "Course Code", type: "text" },
     { name: "progName", label: "Name of the Programme", type: "text" },
@@ -299,7 +319,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "introYear", label: "Year of introduction", type: "number" }
   ],
 
-  "Other Info (New Courses)": [
+  "Other Important Info (New Courses)": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "courseName", label: "Name of the new course introduced", type: "text" },
     { name: "progName", label: "Program name", type: "text" },
     { name: "progCode", label: "Program code", type: "text" },
@@ -308,7 +329,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "docLink", label: "Link of the relevant document", type: "url" }
   ],
 
-  "Departmental Library Informatio": [
+  "Departmental Library Information": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "bookTitle", label: "Title of The Book", type: "text" },
     { name: "authors", label: "Authors of Book", type: "text" },
     { name: "publisher", label: "Publisher", type: "text" },
@@ -317,6 +339,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
 
   "PhD Defense Details": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "studentName", label: "Name of Student", type: "text" },
     { name: "rollNo", label: "Enrollment Number/ Roll No.", type: "text" },
     { name: "thesisTitle", label: "Thesis Title", type: "text" },
@@ -341,19 +364,19 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
 // This avoids accidental creation of new tabs when labels differ by case or punctuation.
 export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Achievements of the department": "Achievements of the department",
-  "Detail of Patents filed,publish": "Details of Patents",
+  "Detail of Patents filed, publish": "Detail of Patents filed, publish",
   "Journal Publications": "Journal Publications",
   "Conference Publications": "Conference Publications",
   "Books and chapters": "Books and chapters",
   "Fin. support to attend Conf etc": "Fin. support to attend Conf etc",
-  "Current stock of Desktop,HPC et": "Current stock of Desktop,HPC et",
+  "Current stock of Desktop, HPC etc": "Current stock of Desktop, HPC etc",
   "Teachers using ICT": "Teachers using ICT",
   "Teachers attending PDP etc": "Teachers attending PDP etc",
   "Visit of faculty to other inst": "Visit of faculty to other inst",
   "Professional Affiliations": "Professional Affiliations",
   "Prog. where syllabus revision": "Prog. where syllabus revision",
   "Student centric methods": "Student centric methods",
-  "academic and stress related iss": "academic and stress related iss",
+  "academic and stress related issues": "academic and stress related issues",
   "Awards, recognition, fellowship": "Awards, recognition, fellowship",
   "Recognition by govt agency": "Recognition by govt agency",
   "Grants for research projects": "Grants for research projects",
@@ -363,25 +386,25 @@ export const GOOGLE_SHEET_NAME_MAP: Record<string, string> = {
   "Collaborative activities": "Collaborative activities",
   "Linkages with inst., industries": "Linkages with inst., industries",
   "E-content developed by teacher": "E-content developed by teacher",
-  "Capability development Schemes": "Detail of capability enhancement and development schemes organised by department",
-  "Students-Comp Exam, Higher Edu. (Progressed)": "Detail of student progression to higher education (previous graduating batch) (the current year)",
-  "Students-Comp Exam, Higher Edu. (Qualified)": "Students qualifying in state/ national/ international level examinations during the current year (eg: NET/SLET/GATE/GMAT/CAT/GRE/TOEFL/Civil Services/State government examinations)",
-  "Details of awards, medals etc": "Details of awards/medals for outstanding performance in sports/cultural activities at national/international level (award for a team event should be counted as one) during the current year",
-  "Students provided fin. support": "Students provided with financial support to attend Conferences / Seminars /Symposia /Workshops/Short Term Course/Guest Lecture",
-  "Programmes organized by Dept.": "Detail of professional development/Conferences / Seminars /Symposia / Workshops /Short Term Course/Guest Lecture/GIAN/TEQIP / administrative training Programmes organized by the department for teaching and non-teaching staff during current year",
+  "Capability development Schemes": "Capability development Schemes",
+  "Students-Comp Exam, Higher Edu. (Progressed)": "Students-Comp Exam, Higher Edu. (Progressed)",
+  "Students-Comp Exam, Higher Edu. (Qualified)": "Students-Comp Exam, Higher Edu. (Qualified)",
+  "Details of awards, medals etc": "Details of awards, medals etc",
+  "Students provided fin. support": "Students provided fin. support",
+  "Programmes organized by Dept.": "Programmes organized by Dept.",
   "Staff Training": "Staff Training",
-  "Functional MoUs with institutio": "Number of functional MoUs with institutions of national, international importance, other universities, industries, corporate houses etc. during the last five years (only functional MoUs with ongoing activities to be considered)",
+  "Functional MoUs with institution": "Functional MoUs with institution",
   "Extension & outreach activities": "Extension & outreach activities",
-  "Other Info (Employability/Skill)": "Other Info (Employability/Skill)",
-  "Other Info (New Courses)": "Other Info (New Courses)",
-  "Departmental Library Informatio": "Departmental Library Informatio",
+  "Other Important Info (Employability/Skill)": "Other Important Info (Employability/Skill)",
+  "Other Important Info (New Courses)": "Other Important Info (New Courses)",
+  "Departmental Library Information": "Departmental Library Information",
   "PhD Defense Details": "PhD Defense Details",
   "Student Submission Logs": "logs"
 };
 
 // Role-based sheet access control
 export const STUDENT_SHEETS = [
-  "Detail of Patents filed,publish",
+  "Detail of Patents filed, publish",
   "Students-Comp Exam, Higher Edu. (Progressed)",
   "Students-Comp Exam, Higher Edu. (Qualified)",
   "Details of awards, medals etc",
