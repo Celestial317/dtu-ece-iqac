@@ -335,18 +335,22 @@ export default function App() {
           </div>
 
           <nav className="flex-1 overflow-y-auto overscroll-contain px-3 sm:px-4 pb-8 sm:pb-10 space-y-1">
-            {filteredSheets.map((name, index) => (
-              <button
-                key={name}
-                onClick={() => handleSheetSelect(name)}
-                className={`w-full flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-[10px] transition-all group ${
-                  activeSheet === name ? 'bg-mint-600 text-white shadow-xl font-black translate-x-1' : 'text-slate-500 hover:bg-mint-50 hover:text-mint-700 font-bold'
-                }`}
-              >
-                <span className="truncate uppercase tracking-tight text-left">{index + 1}. {name}</span>
-                <ChevronRight size={14} className={activeSheet === name ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} />
-              </button>
-            ))}
+            {filteredSheets.map((name, index) => {
+              // If the name starts with a pattern like 5A, 5B, 5C, 12A, 12B, 12C, don't prepend index
+              const isSubsection = /^\d{1,2}[A-C] /.test(name);
+              return (
+                <button
+                  key={name}
+                  onClick={() => handleSheetSelect(name)}
+                  className={`w-full flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-[10px] transition-all group ${
+                    activeSheet === name ? 'bg-mint-600 text-white shadow-xl font-black translate-x-1' : 'text-slate-500 hover:bg-mint-50 hover:text-mint-700 font-bold'
+                  }`}
+                >
+                  <span className="truncate uppercase tracking-tight text-left">{isSubsection ? name : `${index + 1}. ${name}`}</span>
+                  <ChevronRight size={14} className={activeSheet === name ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} />
+                </button>
+              );
+            })}
           </nav>
         </aside>
 
