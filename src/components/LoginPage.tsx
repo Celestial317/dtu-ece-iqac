@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LogIn, User, Lock, Calendar } from 'lucide-react';
+import { LogIn, User, Lock, Calendar, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { PERIOD_OPTIONS, type PeriodOption } from '../schema';
 
@@ -20,6 +20,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [studentPhone, setStudentPhone] = useState('');
   const [facultyId, setFacultyId] = useState('');
   const [facultyPassword, setFacultyPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const { login } = useAuth();
 
@@ -215,17 +216,26 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                   />
                 </div>
 
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-black text-slate-800 uppercase tracking-widest mb-2">
                     Password
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={facultyPassword}
                     onChange={(e) => setFacultyPassword(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none text-slate-900 font-semibold"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none text-slate-900 font-semibold pr-12"
                     placeholder="Enter your password"
                   />
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 focus:outline-none"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
                 </div>
 
                 {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-bold">{error}</div>}

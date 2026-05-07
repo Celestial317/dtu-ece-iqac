@@ -21,7 +21,7 @@ export function Sidebar({ active, onSelect }: SidebarProps) {
           <div className="bg-mint-600 p-2.5 rounded-2xl text-white shadow-lg shadow-mint-100">
             <LayoutDashboard size={22} />
           </div>
-          <span className="font-black uppercase tracking-tight text-lg sm:text-xl">Monthly Data Portal</span>
+          <span className="font-black uppercase tracking-tight text-lg sm:text-xl">IQAC Bi-Monthly Data Portal</span>
         </div>
         <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest ml-1">DataFrame Controller</p>
       </div>

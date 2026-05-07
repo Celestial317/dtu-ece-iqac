@@ -378,6 +378,15 @@ export default function App() {
           </header>
 
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10 space-y-8 sm:space-y-9 lg:space-y-10">
+            {/* Section Heading and Subheading */}
+            <div className="mb-8">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-mint-700 tracking-tight mb-1">
+                {activeSheet || "Section Name"}
+              </h1>
+              <p className="text-sm sm:text-base text-slate-500 font-semibold">
+                Department of Electronics and Communication, DTU
+              </p>
+            </div>
             <section className="bg-white border border-mint-100 rounded-3xl sm:rounded-[2rem] lg:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 shadow-xl shadow-mint-100/10">
               <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-slate-400 mb-6 sm:mb-8 lg:mb-10 flex items-center gap-2">
                 <Plus size={16} /> New Record
