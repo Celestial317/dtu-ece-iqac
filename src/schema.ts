@@ -13,6 +13,7 @@ export interface Field {
   label: string;
   type: 'text' | 'number' | 'url' | 'date';
   autoGenerate?: boolean;
+  options?: string[];
 }
 
 export const SHEET_CONFIGS: Record<string, Field[]> = {
@@ -32,7 +33,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "issn", label: "ISSN number", type: "text" },
     { name: "journalLink", label: "Link to website of the Journal (Provide Publically Accesible G-Drive Link)", type: "url" },
     { name: "articleLink", label: "Link to article/paper/abstract of the article (Provide Publically Accesible G-Drive Link)", type: "url" },
-    { name: "ugcStatus", label: "Is it listed in UGC Care list", type: "text" }
+    { name: "ugcStatus", label: "Is it listed in UGC Care list (Yes/No)", type: "text", options: ["Yes", "No"] }
   ],
   "Conference Publications": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -51,7 +52,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "chapterTitle", label: "Title of the chapters published", type: "text" },
     { name: "year", label: "Year of publication", type: "number" },
     { name: "isbn", label: "ISBN number", type: "text" },
-    { name: "affiliationMatch", label: "Affiliating Institution was same at time of publication (Yes/No)", type: "text" },
+    { name: "affiliationMatch", label: "Affiliating Institution was same at time of publication (Yes/No)", type: "text", options: ["Yes", "No"] },
     { name: "publisher", label: "Name of the publisher", type: "text" },
     { name: "linkDoi", label: "Link/DOI (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
@@ -60,7 +61,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "bodyTitle", label: "Title of the conference/ workshops/ name of the professional body", type: "text" },
     { name: "teacherName", label: "Name of the teacher", type: "text" },
     { name: "amount", label: "Amount provided by the University", type: "number" },
-    { name: "purpose", label: "Purpose (Membership fee/travel/Registration fee)", type: "text" }
+    { name: "purpose", label: "Purpose (Membership fee/travel/Registration fee)", type: "text", options: ["Membership fee", "travel", "Registration fee"] }
   ],
   "Teachers using ICT": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -73,7 +74,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
   "Teachers attending PDP/FDP etc": [
     { name: "facultyName", label: "Name of the Faculty", type: "text" },
-    { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text" },
+    { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text", options: ["FDP", "Orientation", "Refresher", "Other"] },
     { name: "duration", label: "Duration (in No. of days)", type: "number" },
     { name: "dates", label: "Start Date and End Date", type: "text" },
     { name: "organizer", label: "Name of the Organising Institution", type: "text" },
@@ -98,7 +99,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "awardeeName", label: "Name of the awardee", type: "text" },
     { name: "awardName", label: "Name of the award", type: "text" },
     { name: "awardingBody", label: "Name of the awarding body", type: "text" },
-    { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text" },
+    { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text", options: ["innovation", "tech transfer", "Other"] },
     { name: "year", label: "Year of award", type: "number" },
     { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
@@ -152,10 +153,10 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
   "Collaborative activities": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
-    { name: "activityType", label: "Type of Activity (Research/Faculty Exchange/Student Exchange etc.)", type: "text" },
+    { name: "activityType", label: "Type of Activity (Research/Faculty Exchange/Student Exchange etc.)", type: "text", options: ["Research", "Faculty Exchange", "Student Exchange", "Other"] },
     { name: "organization", label: "Name of Institution/Organization", type: "text" },
     { name: "year", label: "Year", type: "number" },
-    { name: "nature", label: "Nature of Collaboration (Project, MoU, etc.)", type: "text" },
+    { name: "nature", label: "Nature of Collaboration (Project, MoU, etc.)", type: "text", options: ["Project", "MoU", "Other"] },
     { name: "participants", label: "Number of Participants (Faculty/Students)", type: "text" },
     { name: "duration", label: "Duration of Activity", type: "text" },
     { name: "funding", label: "Funding Details", type: "text" },
@@ -179,7 +180,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   "5B Details of National/Internation Level Exams": [
     { name: "studentName", label: "Name of the qualifying student", type: "text" },
     { name: "year", label: "Year of Qualifying", type: "number" },
-    { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
+    { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text", options: ["State", "National", "International"] },
     { name: "examName", label: "Name of competitive examination", type: "text" },
     { name: "docLink", label: "Links to relevant document (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
@@ -196,8 +197,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "year", label: "Year", type: "number" },
     { name: "awardName", label: "Name of the award/ medal", type: "text" },
-    { name: "level", label: "National/ International", type: "text" },
-    { name: "category", label: "Sports/ Cultural", type: "text" },
+    { name: "level", label: "National/ International", type: "text", options: ["National", "International"] },
+    { name: "category", label: "Sports/Cultural/Technical", type: "text", options: ["Sports", "Cultural", "Technical"] },
     { name: "idNumber", label: "AADHAR / Student ID number", type: "text" },
     { name: "studentName", label: "Name of the student", type: "text" },
     { name: "docLink", label: "Relevant document (Link) (Provide Publically Accesible G-Drive Link)", type: "url" }

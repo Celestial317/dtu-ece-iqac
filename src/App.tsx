@@ -321,14 +321,28 @@ export default function App() {
                         <label className="block text-sm sm:text-base font-black text-slate-800 uppercase tracking-[0.08em] mb-2 ml-0.5">
                           {field.label}
                         </label>
-                        <input
-                          name={field.name}
-                          type={field.type === 'url' ? 'text' : field.type}
-                          inputMode={field.type === 'url' ? 'url' : undefined}
-                          placeholder={field.type === 'url' ? 'e.g. link.com or https://link.com' : undefined}
-                          required
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
-                        />
+                        {field.options && field.options.length > 0 ? (
+                          <select
+                            name={field.name}
+                            required
+                            defaultValue=""
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
+                          >
+                            <option value="" disabled>Select</option>
+                            {field.options.map(opt => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            name={field.name}
+                            type={field.type === 'url' ? 'text' : field.type}
+                            inputMode={field.type === 'url' ? 'url' : undefined}
+                            placeholder={field.type === 'url' ? 'e.g. link.com or https://link.com' : undefined}
+                            required
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
+                          />
+                        )}
                       </div>
                     ))}
                   <div className="md:col-span-2 flex justify-stretch sm:justify-end mt-2 sm:mt-4">
