@@ -357,35 +357,32 @@ export default function App() {
         {/* MAIN CONTENT */}
         <main className="min-w-0 flex-1 h-screen flex flex-col overflow-hidden bg-white">
           <header className="sticky top-0 z-10 bg-white/95 border-b border-mint-100 px-4 sm:px-6 lg:px-10 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm">
-            <div className="flex items-start gap-3 sm:gap-4 min-w-0">
-              <button
-                className="lg:hidden mt-0.5 rounded-xl border border-slate-200 p-2 text-slate-600 hover:bg-slate-50"
-                onClick={() => setIsSidebarOpen(true)}
-                aria-label="Open navigation"
-              >
-                <Menu size={18} />
-              </button>
-              <div className="min-w-0">
+            <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full justify-between">
+              <div className="flex items-center gap-3 min-w-0">
+                <button
+                  className="lg:hidden mt-0.5 rounded-xl border border-slate-200 p-2 text-slate-600 hover:bg-slate-50"
+                  onClick={() => setIsSidebarOpen(true)}
+                  aria-label="Open navigation"
+                >
+                  <Menu size={18} />
+                </button>
                 <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight uppercase break-words">
-                  {activeSheet}
+                  Dept. of ECE, DTU
                 </h2>
               </div>
-            </div>
-            <div className="self-start sm:self-auto flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700">
-              <Calendar size={14} />
-              <span>{period}</span>
+              <div className="self-start sm:self-auto flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700">
+                <Calendar size={14} />
+                <span>{period}</span>
+              </div>
             </div>
           </header>
 
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10 space-y-8 sm:space-y-9 lg:space-y-10">
-            {/* Section Heading and Subheading */}
+            {/* Section Heading only */}
             <div className="mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-mint-700 tracking-tight mb-1">
                 {activeSheet || "Section Name"}
               </h1>
-              <p className="text-sm sm:text-base text-slate-500 font-semibold">
-                Department of Electronics and Communication, DTU
-              </p>
             </div>
             <section className="bg-white border border-mint-100 rounded-3xl sm:rounded-[2rem] lg:rounded-[2.5rem] p-5 sm:p-8 lg:p-10 shadow-xl shadow-mint-100/10">
               <h3 className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] text-slate-400 mb-6 sm:mb-8 lg:mb-10 flex items-center gap-2">
