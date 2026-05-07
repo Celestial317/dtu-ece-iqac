@@ -33,7 +33,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       return;
     }
     if (!/^\d{10}$/.test(studentPhone.trim())) {
-      setError('Phone number must be exactly 10 digits.');
+      setError('Enter a valid 10-digit phone number');
       return;
     }
     if (!selectedPeriod) {
