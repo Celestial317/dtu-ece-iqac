@@ -122,7 +122,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "amountInr", label: "Amount in INR", type: "number" },
     { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
-  "12A Revenue generated (Consultancy)": [
+  "16A Revenue generated (Consultancy)": [
     { name: "consultantName", label: "Name of the consultant", type: "text" },
     { name: "projectName", label: "Name of consultancy project", type: "text" },
     { name: "totalGrant", label: "Total Grant (Rs.)", type: "number" },
@@ -131,7 +131,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
     { name: "docLink", label: "Relevant Documents / Link (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
-  "12B Revenue generated (Corporate Training)": [
+  "16B Revenue generated (Corporate Training)": [
     { name: "teacherNames", label: "Names of the teacher-consultants", type: "text" },
     { name: "trainingTitle", label: "Title of corporate training programme", type: "text" },
     { name: "seekingAgency", label: "Agency seeking training with contact details", type: "text" },
@@ -139,7 +139,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
     { name: "traineeCount", label: "Number of trainees", type: "number" }
   ],
-  "12C Revenue generated (Collaborations)": [
+  "16C Revenue generated (Collaborations)": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
     { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },

@@ -32,11 +32,16 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       setError('All fields are required');
       return;
     }
+    if (!/^\d{10}$/.test(studentPhone.trim())) {
+      setError('Phone number must be exactly 10 digits.');
+      return;
+    }
     if (!selectedPeriod) {
       setError('Please select a period');
       return;
     }
 
+    // Direct submission for students (no batch verification)
     login(
       {
         type: 'student',

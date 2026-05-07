@@ -367,7 +367,7 @@ export default function App() {
                   <Menu size={18} />
                 </button>
                 <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight uppercase break-words">
-                  Dept. of Electronics and Communication Engineering, DTU
+                  Department of ECE, DTU
                 </h2>
               </div>
               <div className="self-start sm:self-auto flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-bold text-slate-700">
