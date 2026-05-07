@@ -7,7 +7,17 @@ import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP, t
 import { useAuth } from './contexts/AuthContext';
 import LoginPage from './components/LoginPage';
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4dBU1yCZgfBpya0wMaPNClTmws6R9xUiHYAmhJI_8686zTm5zCSVfUgImoUX0HQ-0TA/exec";
+
+// Map each bi-monthly period to its Google Script URL (user to paste their URLs)
+const GOOGLE_SCRIPT_URLS: Record<PeriodOption, string> = {
+  "Jan-Feb2026": "https://script.google.com/macros/s/AKfycbzLzrmtJ8AUarYv-GCbUlgqK8sYkgYVL02OdK834Ggg12g3EnM6cF4BcqlVAOd3MJcevQ/exec",
+  "Mar-Apr2026": "https://script.google.com/macros/s/AKfycbxq241ry6OTTvMTZu1rKmWsSmCqG6m2oMN_6bYWouGisRsZHbrI4hNMmP5r7tbXKeDf0Q/exec",
+  "May-Jun2026": "https://script.google.com/macros/s/AKfycbyIBdOi_9rZtfE4qsLqm2us82doR_a8v2UNt_gwqHKLSDPW2XkblD0Qwh-xl66FM6Ne/exec",
+  "Jul-Aug2026": "PASTE_JUL_AUG_URL_HERE",
+  "Sep-Oct2026": "PASTE_SEP_OCT_URL_HERE",
+  "Nov-Dec2026": "PASTE_NOV_DEC_URL_HERE"
+};
+
 
 interface DataFrameRow {
   id: string;
@@ -49,12 +59,14 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const getSelectedScriptLink = (): string => {
-    // The script link is now constant, but we keep the function for consistency
-    // and potential future variations.
-    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_")) {
-      throw new Error(`Google Script URL is not configured in App.tsx.`);
+    if (!period) {
+      throw new Error("No reporting period selected.");
     }
-    return GOOGLE_SCRIPT_URL;
+    const url = GOOGLE_SCRIPT_URLS[period];
+    if (!url || url.startsWith("PASTE_")) {
+      throw new Error(`Google Script URL for period ${period} is not configured. Please paste the correct URL in App.tsx.`);
+    }
+    return url;
   };
 
   const postRowToSheet = async (uiSheetName: string, rowData: Record<string, any>, submissionPeriod: PeriodOption) => {
