@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Search, LayoutDashboard, Plus, Trash2, 
+  Search, LayoutDashboard, Plus, 
   Check, ChevronRight, Loader2, Layers, Menu, X, LogOut, Calendar
 } from 'lucide-react';
 import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP, type PeriodOption } from './schema';
@@ -54,7 +54,7 @@ export default function App() {
   const { user, role, period, logout, isAuthenticated } = useAuth();
   const [activeSheet, setActiveSheet] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [df, setDf] = useState<Record<string, DataFrameRow[]>>({});
+  // const [df, setDf] = useState<Record<string, DataFrameRow[]>>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
