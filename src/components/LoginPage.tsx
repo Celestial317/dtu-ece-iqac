@@ -229,12 +229,12 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                   />
                   <button
                     type="button"
-                    tabIndex={-1}
                     onClick={() => setShowPassword((v) => !v)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 focus:outline-none"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-mint-700 focus:outline-none"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    style={{display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, background: 'none', border: 'none'}}
                   >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                   </button>
                 </div>
 
