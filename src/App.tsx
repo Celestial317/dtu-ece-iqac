@@ -49,6 +49,7 @@ export default function App() {
   const { user, role, period, logout, isAuthenticated } = useAuth();
   const [activeSheet, setActiveSheet] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [studentLogs, setStudentLogs] = useState<Record<string, any>[]>([]);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -176,16 +177,11 @@ export default function App() {
     }
   };
 
-  // Removed syncRow and batch logic for students. All submissions are now direct for both roles.
-
-
   if (!isAuthenticated) {
     return <LoginPage onLoginSuccess={() => {}} />;
   }
 
   const visibleSheets = getVisibleSheets();
-  // Removed all df logic; no local data frame is used.
-  const currentDf: any[] = [];
   const schema = SHEET_CONFIGS[activeSheet] || [];
   const visibleSchema = schema.filter(field => !field.autoGenerate);
   const filteredSheets = visibleSheets.filter(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
