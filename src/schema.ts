@@ -150,17 +150,6 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "activityNature", label: "Nature of the activity", type: "text" },
     { name: "docLink", label: "Relevant Documents / Link (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
-  "16C Revenue generated (Collaborations)": [
-    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
-    { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
-    { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
-    { name: "participantName", label: "Name of the participant", type: "text" },
-    { name: "financialSource", label: "Source of financial support", type: "text" },
-    { name: "collabYear", label: "Year of collaboration", type: "number" },
-    { name: "duration", label: "Duration", type: "text" },
-    { name: "activityNature", label: "Nature of the activity", type: "text" },
-    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
-  ],
   "Collaborative activities": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityType", label: "Type of Activity (Research/Faculty Exchange/Student Exchange etc.)", type: "text" },
