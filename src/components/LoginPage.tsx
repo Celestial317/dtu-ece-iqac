@@ -9,7 +9,7 @@ interface LoginPageProps {
 
 const FACULTY_CREDENTIALS = {
   id: 'dtu@ece',
-  password: 'Dtu@321ece'
+  password: '12345'
 };
 
 export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
@@ -75,7 +75,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
             <LogIn size={32} className="text-white" />
           </div>
           <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-2">
-            Monthly Data Portal
+            IQAC Bi-Monthly Data Portal by DTU ECE
           </h1>
           <p className="text-slate-500 font-semibold">Select your role to continue</p>
         </div>
