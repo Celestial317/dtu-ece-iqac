@@ -21,7 +21,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "patentNo", label: "Patent Number", type: "text" },
     { name: "awardDate", label: "Date of Award", type: "date" },
     { name: "agency", label: "Patent Awarding Agency", type: "text" },
-    { name: "link", label: "Link of Document", type: "url" }
+    { name: "link", label: "Link of Document (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Journal Publications": [
     { name: "title", label: "Title of paper", type: "text" },
@@ -30,8 +30,8 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "journal", label: "Name of journal", type: "text" },
     { name: "year", label: "Year of publication", type: "number" },
     { name: "issn", label: "ISSN number", type: "text" },
-    { name: "journalLink", label: "Link to website of the Journal", type: "url" },
-    { name: "articleLink", label: "Link to article/paper/abstract of the article", type: "url" },
+    { name: "journalLink", label: "Link to website of the Journal (Provide Publically Accesible G-Drive Link)", type: "url" },
+    { name: "articleLink", label: "Link to article/paper/abstract of the article (Provide Publically Accesible G-Drive Link)", type: "url" },
     { name: "ugcStatus", label: "Is it listed in UGC Care list", type: "text" }
   ],
   "Conference Publications": [
@@ -42,7 +42,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "confName", label: "Name of Conference", type: "text" },
     { name: "year", label: "Year of publication", type: "number" },
     { name: "issn", label: "ISSN Number", type: "text" },
-    { name: "link", label: "Link to article/paper/abstract/DOI", type: "url" }
+    { name: "link", label: "Link to article/paper/abstract/DOI (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Books and chapters": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -53,7 +53,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "isbn", label: "ISBN number", type: "text" },
     { name: "affiliationMatch", label: "Affiliating Institution was same at time of publication (Yes/No)", type: "text" },
     { name: "publisher", label: "Name of the publisher", type: "text" },
-    { name: "linkDoi", label: "Link/DOI", type: "url" }
+    { name: "linkDoi", label: "Link/DOI (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Fin. support to attend Conf etc": [
     { name: "dates", label: "Dates (from-to) (DD-MM-YYYY)", type: "text" },
@@ -69,7 +69,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "ictClassrooms", label: "Number of ICT enabled classrooms", type: "text" },
     { name: "smartClassrooms", label: "Number of smart classrooms with class room number", type: "text" },
     { name: "techniques", label: "E-resources and techniques", type: "text" },
-    { name: "docLink", label: "Relevant documents/ link", type: "url" }
+    { name: "docLink", label: "Relevant documents/ link (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Teachers attending PDP/FDP etc": [
     { name: "facultyName", label: "Name of the Faculty", type: "text" },
@@ -77,7 +77,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "duration", label: "Duration (in No. of days)", type: "number" },
     { name: "dates", label: "Start Date and End Date", type: "text" },
     { name: "organizer", label: "Name of the Organising Institution", type: "text" },
-    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
+    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Visit of faculty to other inst": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -85,7 +85,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "designationOrg", label: "Designation & Organization", type: "text" },
     { name: "topic", label: "Topic", type: "text" },
     { name: "date", label: "Date", type: "date" },
-    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
+    { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Professional Affiliations": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -100,7 +100,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "awardingBody", label: "Name of the awarding body", type: "text" },
     { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text" },
     { name: "year", label: "Year of award", type: "number" },
-    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Recognition by govt agency": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -110,7 +110,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "awardYear", label: "Year of Award", type: "number" },
     { name: "funds", label: "Funds provided", type: "number" },
     { name: "duration", label: "Duration of award", type: "text" },
-    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
+    { name: "docLink", label: "Relevant Documents / Link (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Grants for research projects": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -120,7 +120,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "duration", label: "Duration", type: "text" },
     { name: "awardYear", label: "Year of award or sanction", type: "number" },
     { name: "amountInr", label: "Amount in INR", type: "number" },
-    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "12A Revenue generated (Consultancy)": [
     { name: "consultantName", label: "Name of the consultant", type: "text" },
@@ -129,7 +129,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "sponsoringAgency", label: "Agency with contact details", type: "text" },
     { name: "grantYear", label: "Year of grant", type: "number" },
     { name: "revenue", label: "Revenue generated (INR in Lakhs)", type: "number" },
-    { name: "docLink", label: "Relevant Documents / Link", type: "url" }
+    { name: "docLink", label: "Relevant Documents / Link (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "12B Revenue generated (Corporate Training)": [
     { name: "teacherNames", label: "Names of the teacher-consultants", type: "text" },
@@ -140,6 +140,17 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "traineeCount", label: "Number of trainees", type: "number" }
   ],
   "12C Revenue generated (Collaborations)": [
+    { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
+    { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
+    { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
+    { name: "participantName", label: "Name of the participant", type: "text" },
+    { name: "financialSource", label: "Source of financial support", type: "text" },
+    { name: "collabYear", label: "Year of collaboration", type: "number" },
+    { name: "duration", label: "Duration", type: "text" },
+    { name: "activityNature", label: "Nature of the activity", type: "text" },
+    { name: "docLink", label: "Relevant Documents / Link (Provide Publically Accesible G-Drive Link)", type: "url" }
+  ],
+  "16C Revenue generated (Collaborations)": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "activityTitle", label: "Title of the collaborative activity", type: "text" },
     { name: "agencyName", label: "Collaborating agency with contact details", type: "text" },
@@ -167,21 +178,21 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "moduleName", label: "Name of the module", type: "text" },
     { name: "platform", label: "Platform (e.g., SWAYAM, NPTEL)", type: "text" },
     { name: "launchDate", label: "Date of launching e-content", type: "text" },
-    { name: "docLink", label: "Link of the relevant document", type: "url" }
+    { name: "docLink", label: "Link of the relevant document (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "5A Enrolment in Higher Education": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
     { name: "studentName", label: "Name of the outgoing student", type: "text" },
     { name: "organization", label: "Organization joined for Higher Education", type: "text" },
     { name: "programDetails", label: "Details of the program enrolled", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "5B Details of National/Internation Level Exams": [
     { name: "studentName", label: "Name of the qualifying student", type: "text" },
     { name: "year", label: "Year of Qualifying", type: "number" },
     { name: "examLevel", label: "Level of Exam (State/National/Intl)", type: "text" },
     { name: "examName", label: "Name of competitive examination", type: "text" },
-    { name: "docLink", label: "Links to relevant document", type: "url" }
+    { name: "docLink", label: "Links to relevant document (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "5C Qualification in any Competitive Exam/Higher Studies": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -190,7 +201,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "courseName", label: "Course Name", type: "text" },
     { name: "studentName", label: "Name of the Student", type: "text" },
     { name: "studentId", label: "Student ID Number", type: "text" },
-    { name: "proofLink", label: "Attach Proofs (Link)", type: "url" }
+    { name: "proofLink", label: "Attach Proofs (Link) (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Details of awards, medals etc": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -200,7 +211,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "category", label: "Sports/ Cultural", type: "text" },
     { name: "idNumber", label: "AADHAR / Student ID number", type: "text" },
     { name: "studentName", label: "Name of the student", type: "text" },
-    { name: "docLink", label: "Relevant document (Link)", type: "url" }
+    { name: "docLink", label: "Relevant document (Link) (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Students provided fin. support": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
@@ -219,7 +230,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "location", label: "Location", type: "text" },
     { name: "activityType", label: "Type of activity", type: "text" },
     { name: "participantCount", label: "No. of Participants", type: "number" },
-    { name: "geoTagLink", label: "Report with Geo-Tag Photograph (Link)", type: "url" }
+    { name: "geoTagLink", label: "Report with Geo-Tag Photograph (Link) (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
   "Student Submission Logs": [
     { name: "srNo", label: "Sr. No.", type: "text", autoGenerate: true },
