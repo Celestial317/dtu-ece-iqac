@@ -49,7 +49,7 @@ export default function App() {
   const { user, role, period, logout, isAuthenticated } = useAuth();
   const [activeSheet, setActiveSheet] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [studentLogs, setStudentLogs] = useState<Record<string, any>[]>([]);
+  const [studentLogs] = useState<Record<string, any>[]>([]);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
