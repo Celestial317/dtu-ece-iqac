@@ -336,7 +336,7 @@ export default function App() {
                       ) : (
                         <Plus size={18} />
                       )}
-                      {role === 'faculty' ? 'Submit Record' : 'Add to Batch'}
+                      Submit Record
                     </button>
                   </div>
                 </form>
@@ -345,10 +345,10 @@ export default function App() {
               )}
             </section>
 
-            {currentDf.length > 0 && (
+            {role === 'faculty' && currentDf.length > 0 && (
               <section>
                 <h3 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-6 flex items-center gap-2">
-                  <Layers size={16} /> {role === 'faculty' ? 'Submission Log' : 'Batch Verification'}
+                  <Layers size={16} /> Submission Log
                 </h3>
                 <div className="bg-white border border-mint-100 rounded-3xl shadow-xl shadow-mint-100/10 overflow-hidden">
                   <div className="overflow-x-auto">
@@ -361,7 +361,6 @@ export default function App() {
                             </th>
                           ))}
                           <th className="px-6 py-4 font-black text-slate-500 uppercase tracking-wider text-xs text-left">Status</th>
-                          {role !== 'faculty' && <th className="px-6 py-4"></th>}
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-mint-100">
@@ -387,26 +386,6 @@ export default function App() {
                                 </span>
                               )}
                             </td>
-                            {role !== 'faculty' && (
-                              <td className="px-6 py-4 whitespace-nowrap text-right space-x-2">
-                                <button
-                                  onClick={() => syncRow(row.id)}
-                                  disabled={row.isSyncing || row.isSynced}
-                                  className="p-2 bg-mint-100 text-mint-700 rounded-lg hover:bg-mint-200 disabled:bg-slate-100 disabled:text-slate-400 transition-colors"
-                                  aria-label="Sync row"
-                                >
-                                  <Check size={16} />
-                                </button>
-                                <button
-                                  onClick={() => setDf((prev: Record<string, DataFrameRow[]>) => ({ ...prev, [activeSheet]: prev[activeSheet].filter((r: DataFrameRow) => r.id !== row.id) }))}
-                                  disabled={row.isSynced}
-                                  className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 disabled:opacity-50 transition-colors"
-                                  aria-label="Delete row"
-                                >
-                                  <Trash2 size={16} />
-                                </button>
-                              </td>
-                            )}
                           </tr>
                         ))}
                       </tbody>
