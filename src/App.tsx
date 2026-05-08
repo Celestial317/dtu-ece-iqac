@@ -171,9 +171,9 @@ export default function App() {
       const logData = {
         srNo: '',
         timestamp: new Date().toLocaleString(),
-        studentName: role === 'student' && user && user.type === 'student' ? user.name : 'Faculty',
-        rollNumber: role === 'student' && user && user.type === 'student' ? user.rollNumber : '0',
-        phoneNumber: role === 'student' && user && user.type === 'student' ? user.phoneNumber : '0',
+        studentName: role === 'student' ? (user as any).name || '' : 'Faculty',
+        rollNumber: role === 'student' ? (user as any).rollNumber || '' : '0',
+        phoneNumber: role === 'student' ? (user as any).phoneNumber || '' : '0',
         sheetName: activeSheet,
         recordsAdded: 1
       };
