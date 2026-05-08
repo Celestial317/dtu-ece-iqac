@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Search, LayoutDashboard, Plus, 
+import {
+  Search, LayoutDashboard, Plus,
   Check, ChevronRight, Loader2, Layers, Menu, X, LogOut, Calendar
 } from 'lucide-react';
 import { SHEET_CONFIGS, STUDENT_SHEETS, FACULTY_SHEETS, GOOGLE_SHEET_NAME_MAP, PERIOD_OPTIONS, type PeriodOption } from './schema';
@@ -13,9 +13,9 @@ const GOOGLE_SCRIPT_URLS: Record<PeriodOption, string> = {
   "Jan-Feb2026": "https://script.google.com/macros/s/AKfycbzLzrmtJ8AUarYv-GCbUlgqK8sYkgYVL02OdK834Ggg12g3EnM6cF4BcqlVAOd3MJcevQ/exec",
   "Mar-Apr2026": "https://script.google.com/macros/s/AKfycbxq241ry6OTTvMTZu1rKmWsSmCqG6m2oMN_6bYWouGisRsZHbrI4hNMmP5r7tbXKeDf0Q/exec",
   "May-Jun2026": "https://script.google.com/macros/s/AKfycbyIBdOi_9rZtfE4qsLqm2us82doR_a8v2UNt_gwqHKLSDPW2XkblD0Qwh-xl66FM6Ne/exec",
-  "Jul-Aug2026": "PASTE_JUL_AUG_URL_HERE",
-  "Sep-Oct2026": "PASTE_SEP_OCT_URL_HERE",
-  "Nov-Dec2026": "PASTE_NOV_DEC_URL_HERE"
+  "Jul-Aug2026": "https://script.google.com/macros/s/AKfycbyoJ4P6e0ZC0okylj36C9d_HlD7qSKEZ_FQSS8FQi9etEig61APh7450K1bo70-gDmW/exec",
+  "Sep-Oct2026": "https://script.google.com/macros/s/AKfycbxieujOvHuHop-NppaDAvpwpKJ-1NMZP9EUEk6YvjC7Rx0jCbaN24Ah1BL84DcU3ZbUvQ/exec",
+  "Nov-Dec2026": "https://script.google.com/macros/s/AKfycbzEGfm3LA1johPjW1vR_vDg51ykdWGtaXdCarg2QyMUMdS6sl3Yl-ePdn_hXRTbAAnb/exec"
 };
 
 
@@ -190,7 +190,7 @@ export default function App() {
   };
 
   if (!isAuthenticated) {
-    return <LoginPage onLoginSuccess={() => {}} />;
+    return <LoginPage onLoginSuccess={() => { }} />;
   }
 
   const visibleSheets = getVisibleSheets();
@@ -215,9 +215,8 @@ export default function App() {
         )}
 
         {/* SIDEBAR */}
-        <aside className={`fixed inset-y-0 left-0 z-40 h-screen w-[85%] max-w-80 transform bg-white border-r border-mint-200 flex flex-col overflow-hidden shadow-2xl transition-transform duration-300 lg:static lg:z-20 lg:w-80 lg:max-w-none lg:translate-x-0 ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}>
+        <aside className={`fixed inset-y-0 left-0 z-40 h-screen w-[85%] max-w-80 transform bg-white border-r border-mint-200 flex flex-col overflow-hidden shadow-2xl transition-transform duration-300 lg:static lg:z-20 lg:w-80 lg:max-w-none lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
           <div className="flex items-start justify-between gap-4 p-5 sm:p-8 border-b border-mint-100 bg-white">
             <div>
               <div className="flex items-center gap-3 text-mint-700 mb-2">
@@ -236,14 +235,14 @@ export default function App() {
               <X size={18} />
             </button>
 
-                  <div className="border-t border-mint-100 p-4">
-                    <button
-                      onClick={logout}
-                      className="w-full flex items-center justify-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-3 rounded-xl font-black text-sm transition-colors"
-                    >
-                      <LogOut size={16} /> Logout
-                    </button>
-                  </div>
+            <div className="border-t border-mint-100 p-4">
+              <button
+                onClick={logout}
+                className="w-full flex items-center justify-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-3 rounded-xl font-black text-sm transition-colors"
+              >
+                <LogOut size={16} /> Logout
+              </button>
+            </div>
           </div>
 
           <div className="p-5 sm:p-6">
@@ -266,9 +265,8 @@ export default function App() {
                 <button
                   key={name}
                   onClick={() => handleSheetSelect(name)}
-                  className={`w-full flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-[10px] transition-all group ${
-                    activeSheet === name ? 'bg-mint-600 text-white shadow-xl font-black translate-x-1' : 'text-slate-500 hover:bg-mint-50 hover:text-mint-700 font-bold'
-                  }`}
+                  className={`w-full flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-[10px] transition-all group ${activeSheet === name ? 'bg-mint-600 text-white shadow-xl font-black translate-x-1' : 'text-slate-500 hover:bg-mint-50 hover:text-mint-700 font-bold'
+                    }`}
                 >
                   <span className="truncate uppercase tracking-tight text-left">{isSubsection ? name : `${index + 1}. ${name}`}</span>
                   <ChevronRight size={14} className={activeSheet === name ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} />
@@ -323,34 +321,34 @@ export default function App() {
               {visibleSchema.length > 0 ? (
                 <form onSubmit={appendToDf} className="grid grid-cols-1 md:grid-cols-2 gap-x-5 lg:gap-x-8 gap-y-4 sm:gap-y-5">
                   {visibleSchema.map(field => (
-                      <div key={field.name} className={field.label.toLowerCase().includes('link') ? "md:col-span-2" : "md:col-span-1"}>
-                        <label className="block text-sm sm:text-base font-black text-slate-800 uppercase tracking-[0.08em] mb-2 ml-0.5">
-                          {field.label}
-                        </label>
-                        {field.options && field.options.length > 0 ? (
-                          <select
-                            name={field.name}
-                            required
-                            defaultValue=""
-                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
-                          >
-                            <option value="" disabled>Select</option>
-                            {field.options.map(opt => (
-                              <option key={opt} value={opt}>{opt}</option>
-                            ))}
-                          </select>
-                        ) : (
-                          <input
-                            name={field.name}
-                            type={field.type === 'url' ? 'text' : field.type}
-                            inputMode={field.type === 'url' ? 'url' : undefined}
-                            placeholder={field.type === 'url' ? 'e.g. link.com or https://link.com' : undefined}
-                            required
-                            className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
-                          />
-                        )}
-                      </div>
-                    ))}
+                    <div key={field.name} className={field.label.toLowerCase().includes('link') ? "md:col-span-2" : "md:col-span-1"}>
+                      <label className="block text-sm sm:text-base font-black text-slate-800 uppercase tracking-[0.08em] mb-2 ml-0.5">
+                        {field.label}
+                      </label>
+                      {field.options && field.options.length > 0 ? (
+                        <select
+                          name={field.name}
+                          required
+                          defaultValue=""
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
+                        >
+                          <option value="" disabled>Select</option>
+                          {field.options.map(opt => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          name={field.name}
+                          type={field.type === 'url' ? 'text' : field.type}
+                          inputMode={field.type === 'url' ? 'url' : undefined}
+                          placeholder={field.type === 'url' ? 'e.g. link.com or https://link.com' : undefined}
+                          required
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base focus:bg-white focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 outline-none transition-all text-slate-900 font-semibold"
+                        />
+                      )}
+                    </div>
+                  ))}
                   <div className="md:col-span-2 flex justify-stretch sm:justify-end mt-2 sm:mt-4">
                     <button
                       type="submit"
