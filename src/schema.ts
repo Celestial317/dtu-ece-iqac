@@ -74,7 +74,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
   "Teachers attending PDP/FDP etc": [
     { name: "facultyName", label: "Name of the Faculty", type: "text" },
-    { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text", options: ["FDP", "Orientation", "Refresher", "Other"] },
+    { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text" },
     { name: "duration", label: "Duration (in No. of days)", type: "number" },
     { name: "dates", label: "Start Date and End Date", type: "text" },
     { name: "organizer", label: "Name of the Organising Institution", type: "text" },
@@ -99,7 +99,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "awardeeName", label: "Name of the awardee", type: "text" },
     { name: "awardName", label: "Name of the award", type: "text" },
     { name: "awardingBody", label: "Name of the awarding body", type: "text" },
-    { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text", options: ["innovation", "tech transfer", "Other"] },
+    { name: "category", label: "Category of award (innovation/tech transfer etc)", type: "text" },
     { name: "year", label: "Year of award", type: "number" },
     { name: "proofLink", label: "Attach Proofs (Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
@@ -153,10 +153,10 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
   ],
   "Collaborative activities": [
     { name: "srNo", label: "S. No.", type: "text", autoGenerate: true },
-    { name: "activityType", label: "Type of Activity (Research/Faculty Exchange/Student Exchange etc.)", type: "text", options: ["Research", "Faculty Exchange", "Student Exchange", "Other"] },
+    { name: "activityType", label: "Type of Activity (Research/Faculty Exchange/Student Exchange etc.)", type: "text" },
     { name: "organization", label: "Name of Institution/Organization", type: "text" },
     { name: "year", label: "Year", type: "number" },
-    { name: "nature", label: "Nature of Collaboration (Project, MoU, etc.)", type: "text", options: ["Project", "MoU", "Other"] },
+    { name: "nature", label: "Nature of Collaboration (Project, MoU, etc.)", type: "text" },
     { name: "participants", label: "Number of Participants (Faculty/Students)", type: "text" },
     { name: "duration", label: "Duration of Activity", type: "text" },
     { name: "funding", label: "Funding Details", type: "text" },

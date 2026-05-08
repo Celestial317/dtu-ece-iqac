@@ -23,6 +23,7 @@ interface AuthContextType {
   login: (user: User, role: UserRole, period: PeriodOption) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  setPeriod: (period: PeriodOption) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,6 +86,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const updatePeriod = (newPeriod: PeriodOption) => {
+    setPeriod(newPeriod);
+    if (user && role) {
+      try {
+        const authState: PersistedAuthState = {
+          user,
+          role,
+          period: newPeriod,
+          expiresAt: Date.now() + AUTH_TTL_MS
+        };
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authState));
+      } catch (error) {
+        console.error("Failed to update period in localStorage", error);
+      }
+    }
+  };
+
   const logout = () => {
     setUser(null);
     setRole(null);
@@ -108,7 +126,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, role, period, login, logout, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, role, period, login, logout, isAuthenticated, setPeriod: updatePeriod }}>
       {children}
     </AuthContext.Provider>
   );
