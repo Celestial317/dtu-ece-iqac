@@ -76,7 +76,7 @@ export const SHEET_CONFIGS: Record<string, Field[]> = {
     { name: "facultyName", label: "Name of the Faculty", type: "text" },
     { name: "programType", label: "Type of Program (FDP, Orientation, Refresher, etc.)", type: "text" },
     { name: "duration", label: "Duration (in No. of days)", type: "number" },
-    { name: "dates", label: "Start Date and End Date", type: "text" },
+    { name: "dates", label: "Start Date", type: "text" },
     { name: "organizer", label: "Name of the Organising Institution", type: "text" },
     { name: "proofLink", label: "Attach Proof (Document Link) - Combine all Proofs in One PDF and Name the file as: FDP_Month_Department (Provide Publically Accesible G-Drive Link)", type: "url" }
   ],
